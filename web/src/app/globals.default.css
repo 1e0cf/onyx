@@ -7,60 +7,60 @@
     --warning: 38 92% 50%;
     --warning-foreground: 48 96% 89%;
 
-    --input-text: #797780;
+    --input-text: #6c6c6b;
 
     /* ---------------------------------
     
      * 1. Single set of neutral values
      * --------------------------------- */
-    --neutral-50: #F9F9FC;
-    --neutral-100: #F1F0F4;
-    --neutral-125: #F1F0F4;
-    --neutral-150: #F1F0F4;
-    --neutral-200: #F1F0F4;
-    --neutral-300: #F1F0F4;
-    --neutral-400: #797780;
-    --neutral-500: #797780;
-    --neutral-600: #797780;
-    --neutral-600-border-dark: #797780;
-    --neutral-600: #797780;
-    --neutral-700: #202023;
-    --neutral-800: #202023;
-    --neutral-900: #202023;
-    --neutral-950: #202023;
+    --neutral-50: #fafafa;
+    --neutral-100: #f5f5f5;
+    --neutral-125: #f1f2f4; /* You had background-125 & text-125 as #f1f2f4 */
+    --neutral-150: #eaeaea;
+    --neutral-200: #d4d4d4;
+    --neutral-300: #d4d4d4;
+    --neutral-400: #a3a3a3;
+    --neutral-500: #737373;
+    --neutral-600: #525252;
+    --neutral-600-border-dark: #525252;
+    --neutral-600: #525252;
+    --neutral-700: #404040;
+    --neutral-800: #262626;
+    --neutral-900: #111827;
+    --neutral-950: #0a0a0a;
 
-    --hover: #FFC75A;
+    --hover: var(--neutral-200);
 
     /* -------------------------------------------------------
      * 2. Keep special, custom, or near-duplicate background
      * ------------------------------------------------------- */
-    --background: #FFFFFF;
-    --background-50: #FAF9FC;
-    --input-background: #FFFFFF;
-    --input-border: #F1F0F4;
-    --text-text: #202023;
-    --background-dark: #27272B;
-    --new-background: #F1F0F5;
-    --new-background-light: #FAF9FC;
-    --background-chatbar: #FAF9FC;
-    --background-chat-hover: #F1F0F5;
-    --background-chat-selected: #F1F0F5;
-    --background-sidebar: #FAF9FC;
+    --background: #fefcfa; /* slightly off-white */
+    --background-50: #fffdfb; /* a little lighter than background but not quite white */
+    --input-background: #fefcfa;
+    --input-border: #f1eee8;
+    --text-text: #f4f2ed;
+    --background-dark: #141414;
+    --new-background: #ebe7de;
+    --new-background-light: #d9d1c0;
+    --background-chatbar: #f5f3ee;
+    --background-chat-hover: #e6e3dd;
+    --background-chat-selected: #e6e3dd;
+    --background-sidebar: #f5f3ee;
 
     /* borders & input (keep if not same as neutral) */
-    --border: #F1F0F4;
-    --border-light: #F9F9FC;
-    --border-medium: #F1F0F4;
-    --border-strong: #797780;
-    --border-dark: #202023;
+    --border: #e5e7eb; /* slightly different than #e5e5e5 */
+    --border-light: #f5f5f5;
+    --border-medium: #d4d4d4;
+    --border-strong: #a3a3a3;
+    --border-dark: #525252;
     --input: 0 0% 89.8%;
 
     /* Additional single-purpose color vars remain */
     --foreground: 0 0% 3.9%;
-    --card: #FFFFFF;
-    --card-foreground: #202023;
-    --popover: #FFFFFF;
-    --popover-foreground: #202023;
+    --card: #ffffff;
+    --card-foreground: #0c0c0c;
+    --popover: #ffffff;
+    --popover-foreground: #0c0c0c;
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
@@ -69,9 +69,9 @@
     --muted-foreground: 0 0% 45.1%;
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
-    --accent-background: #F1F0F5;
-    --accent-background-hovered: #FFC75A;
-    --accent-background-selected: #F1F0F5;
+    --accent-background: #f0eee8;
+    --accent-background-hovered: #e5e3dd;
+    --accent-background-selected: #eae8e2;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --ring: 0 0% 3.9%;
@@ -83,16 +83,16 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --link: #FFC75A;
-    --link-hover: #F26B6F;
+    --link: #3b82f6;
+    --link-hover: #1d4ed8;
 
     /* Status, success, alerts, etc. */
-    --error: #F26B6F;
-    --undo: #F26B6F;
+    --error: #f87171;
+    --undo: #ef4444;
     --success: #030706;
     --light-success: #22c55e;
-    --alert: #FFC75A;
-    --accent-hover: #FFC75A;
+    --alert: #f59e0b;
+    --accent-hover: #4f46e5;
     --black: #000000;
     --white: #ffffff;
 
@@ -111,34 +111,34 @@
     --non-selectable: #f8d7da;
     --non-selectable-border: #f5c2c7;
     --highlight-text: rgba(255, 245, 180, 0.5);
-    --user-bubble: #F1F0F5;
-    --ai-bubble: #27272B;
-    --document-color: #F26B6F;
-    --scrollbar-track: #FAF9FC;
-    --scrollbar-thumb: #F1F0F4;
-    --scrollbar-thumb-hover: #797780;
+    --user-bubble: #f1eee8;
+    --ai-bubble: #272a2d;
+    --document-color: #f43f5e;
+    --scrollbar-track: #f9fafb;
+    --scrollbar-thumb: #e5e7eb;
+    --scrollbar-thumb-hover: #d1d5db;
     --scrollbar-dark-thumb: #989a9c;
     --scrollbar-dark-thumb-hover: #c7cdd2;
 
     /* agent references */
-    --agent-sidebar: #FFC75A;
-    --agent-hovered: #F26B6F;
-    --agent: #FFC75A;
-    --lighter-agent: #FFC75A;
+    --agent-sidebar: #be5d0e;
+    --agent-hovered: #d16b10;
+    --agent: #e47011;
+    --lighter-agent: #f59e0b;
 
     /* Consolidated color variables */
-    --neutral-100-border-light: #F9F9FC;
-    --neutral-300-border-medium: #F1F0F4;
-    --neutral-400-border-strong: #797780;
-    --background-input-background: #FFFFFF;
-    --background-chatbar-sidebar: #FAF9FC;
-    --background-chat-hover-selected: #F1F0F5;
-    --white-card-popover: #FFFFFF;
-    --card-popover-foreground: #202023;
+    --neutral-100-border-light: #f5f5f5;
+    --neutral-300-border-medium: #d4d4d4;
+    --neutral-400-border-strong: #a3a3a3;
+    --background-input-background: #fefcfa;
+    --background-chatbar-sidebar: #f5f3ee;
+    --background-chat-hover-selected: #e6e3dd;
+    --white-card-popover: #ffffff;
+    --card-popover-foreground: #0c0c0c;
 
     /* Near-duplicates consolidated */
-    --neutral-200-border: #F1F0F4;
-    --off-white: #F1F0F5;
+    --neutral-200-border: #e5e6e6; /* Average of #e5e5e5 and #e5e7eb */
+    --off-white: #f3f1ec; /* Average of #f4f2ed, #f5f3ee, #f1eee8, #e9e6e0, #ebe7de */
 
     /* Update references to use new consolidated variables */
     --neutral-100: var(--neutral-100-border-light);
@@ -207,68 +207,68 @@
      *    (reversed for dark mode)
      * --------------------------------- */
     --inputoption: "#B4B4B4";
-    --neutral-50: #202023; /* darkest */
-    --neutral-100-border-light: #27272B;
-    --neutral-125: #2D2C30;
-    --neutral-150: #1F1F21;
-    --neutral-200-border: #2D2C30;
-    --neutral-300-border-medium: #27272B;
-    --neutral-400-border-strong: #797780;
-    --neutral-500: #F1F0F4;
-    --neutral--neutral-600-border-dark: #F9F9FC;
-    --neutral-700: #F1F0F4;
-    --neutral-800: #F9F9FC;
-    --neutral-900: #FFFFFF;
-    --neutral-950: #FFFFFF; /* lightest */
-    --hover: #FFC75A;
+    --neutral-50: #161616; /* darkest */
+    --neutral-100-border-light: #1a1a1a;
+    --neutral-125: #1f1f1f;
+    --neutral-150: #252525;
+    --neutral-200-border: #2c2c2c;
+    --neutral-300-border-medium: #404040;
+    --neutral-400-border-strong: #5a5a5a;
+    --neutral-500: #757575;
+    --neutral--neutral-600-border-dark: #a0a0a0;
+    --neutral-700: #bdbdbd;
+    --neutral-800: #d4d4d4;
+    --neutral-900: #d4d4d4;
+    --neutral-950: #f0f0f0; /* lightest */
+    --hover: #2c2c2c;
 
-    --input-text: #F1F0F4;
+    --input-text: #b4b4b4;
 
-    --text-darker: #FFFFFF;
-    --text-dark: #FFFFFF;
+    --text-darker: #f0f0f0;
+    --text-dark: #f0f0f0;
     /* -------------------------------------------------------
      * 2. Special / custom backgrounds (shifted to dark)
      * ------------------------------------------------------- */
-    --background-input-background: #27272B;
-    --input-background: #2D2C30;
-    --input-border: #797780;
+    --background-input-background: #1f1f1f;
+    --input-background: #303030;
+    --input-border: #5a5a5a;
 
-    --text-text: #FFFFFF;
-    --background-dark: #1F1F21;
-    --background-50: #1F1F21;
+    --text-text: #1d1d1d;
+    --background-dark: #252525;
+    --background-50: #252525;
 
     /* --new-background: #fff; */
-    --new-background: #2D2C30;
-    --new-background-light: #27272B;
+    --new-background: #2c2c2c;
+    --new-background-light: #383838;
 
-    --background-chatbar-sidebar: #1F1F21;
-    --background-chat-hover-selected: #2D2C30;
-    --background-chat-selected: #27272B;
-    --background-sidebar: #1F1F21;
+    --background-chatbar-sidebar: #171717;
+    --background-chat-hover-selected: #3a3a3a;
+    --background-chat-selected: #2f2f2f;
+    --background-sidebar: #171717;
     --black: #000000;
 
     /* --accent-background: #181816; */
-    --accent-background: #2D2C30;
+    --accent-background: #333333;
 
-    --accent-background-hovered: #FFC75A;
-    --accent-background-selected: #27272B;
+    --accent-background-hovered: #2f2f2f;
+    --accent-background-selected: #222222;
 
-    --text-darker: #FFFFFF;
+    --text-darker: #f0f0f0;
 
     /* borders & input (reversed scales) */
-    --neutral-200-border: #797780; /* was #e5e7eb */
-    --neutral-100-border-light: #F1F0F4; /* was #f5f5f5 */
-    --neutral-300-border-medium: #27272B; /* was #d4d4d4 */
-    --neutral-400-border-strong: #2D2C30; /* was #a3a3a3 */
-    --neutral-600-border-dark: #F9F9FC; /* was #525252, now using Tailwind's neutral-400 */
+    --neutral-200-border: #5a5a5a; /* was #e5e7eb */
+    --neutral-100-border-light: #6a6a6a; /* was #f5f5f5 */
+    --neutral-300-border-medium: #4a4a4a; /* was #d4d4d4 */
+    --neutral-400-border-strong: #3a3a3a; /* was #a3a3a3 */
+    --neutral-600-border-dark: #9ca3af; /* was #525252, now using Tailwind's neutral-400 */
     --input: 0 0% 15%; /* (HSL) approx #262626 for dark input backgrounds */
 
     /* Additional single-purpose color vars (inverted where sensible) */
     --foreground: 0 0% 95%; /* light text on dark bg (was 0 0% 3.9%) */
-    --card: #27272B;
-    --card-foreground: #FFFFFF;
-    --popover: #27272B;
-    --popover-foreground: #FFFFFF;
+    --card: #1f1f1f;
+    --card-foreground: #f3f3f3;
+    --popover: #1f1f1f;
+    --popover-foreground: #f2f2f2;
 
     /* You can invert "primary"/"secondary" or pick your own scales */
     --primary: 0 0% 80%; /* lighter gray for emphasis */
@@ -283,10 +283,10 @@
     --accent-foreground: 0 0% 90%;
 
     /* Destructive remains red, but you could darken or lighten */
-    --destructive: #F26B6F; /* dark-ish red */
+    --destructive: #b91c1c; /* dark-ish red */
     --destructive-foreground: #ffffff;
 
-    --ring: #FFC75A; /* used for focus rings, keep a light highlight on dark bg */
+    --ring: #f2f2f2; /* used for focus rings, keep a light highlight on dark bg */
     --radius: 0.5rem;
 
     /* Some charts, links, etc. – typically kept as-is, or tweak if desired */
@@ -295,16 +295,16 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --link: #FFC75A;
-    --link-hover: #F26B6F;
+    --link: #3b82f6;
+    --link-hover: #1d4ed8;
 
     /* Status, success, alerts, etc. – can keep or adjust as needed */
-    --error: #F26B6F;
-    --undo: #F26B6F;
+    --error: #f87171;
+    --undo: #ef4444;
     --success: #22c55e; /* bright green stands out on dark */
     --light-success: #86efac;
-    --alert: #FFC75A;
-    --accent-hover: #FFC75A;
+    --alert: #f59e0b;
+    --accent-hover: #4f46e5;
     --black: #ffffff;
     --white-card-popover: #000000;
 
@@ -330,23 +330,23 @@
     ); /* still stands out as highlight */
     --tw-prose-bold: #fff;
 
-    --off-white: #2D2C30; /* was #f1eee8 */
+    --off-white: #2a2a2a; /* was #f1eee8 */
 
-    --ai-bubble: #1F1F21;
-    --document-color: #F26B6F; /* keep the same bright accent? */
+    --ai-bubble: #1f1f1f;
+    --document-color: #f43f5e; /* keep the same bright accent? */
 
     /* Scrollbars, etc. */
-    --scrollbar-track: #1F1F21;
-    --scrollbar-thumb: #2D2C30;
-    --scrollbar-thumb-hover: #797780;
+    --scrollbar-track: #1c1d1e;
+    --scrollbar-thumb: #3a3a3a;
+    --scrollbar-thumb-hover: #4a4a4a;
     --scrollbar-dark-thumb: #666666;
     --scrollbar-dark-thumb-hover: #909090;
 
     /* Agent references */
-    --agent-sidebar: #FFC75A; /* You can keep or lighten/darken if desired */
-    --agent-hovered: #F26B6F;
-    --agent: #FFC75A;
-    --lighter-agent: #FFC75A;
+    --agent-sidebar: #be5d0e; /* You can keep or lighten/darken if desired */
+    --agent-hovered: #f07c13;
+    --agent: #e47011;
+    --lighter-agent: #f59e0b;
   }
 }
 
