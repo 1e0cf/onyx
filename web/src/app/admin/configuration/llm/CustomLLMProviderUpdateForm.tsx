@@ -23,6 +23,7 @@ import isEqual from "lodash/isEqual";
 import { IsPublicGroupSelector } from "@/components/IsPublicGroupSelector";
 import { usePaidEnterpriseFeaturesEnabled } from "@/components/settings/usePaidEnterpriseFeaturesEnabled";
 import { ModelConfigurationField } from "./ModelConfigurationField";
+import { useTranslations } from "next-intl";
 
 function customConfigProcessing(customConfigsList: [string, string][]) {
   const customConfig: { [key: string]: string } = {};
@@ -46,7 +47,7 @@ export function CustomLLMProviderUpdateForm({
   hideSuccess?: boolean;
 }) {
   const { mutate } = useSWRConfig();
-
+  const t = useTranslations("CustomLLMProviderUpdateForm");
   const [isTesting, setIsTesting] = useState(false);
   const [testError, setTestError] = useState<string>("");
 
@@ -461,9 +462,9 @@ export function CustomLLMProviderUpdateForm({
                   {isTesting ? (
                     <LoadingAnimation text="Testing" />
                   ) : existingLlmProvider ? (
-                    "Update"
+                    t("update")
                   ) : (
-                    "Enable"
+                    t("enable")
                   )}
                 </Button>
                 {existingLlmProvider && (

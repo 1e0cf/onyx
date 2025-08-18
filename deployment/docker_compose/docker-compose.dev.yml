@@ -324,7 +324,7 @@ services:
     restart: unless-stopped
     environment:
       - INTERNAL_URL=http://api_server:8080
-      - WEB_DOMAIN=${WEB_DOMAIN:-}
+      - WEB_DOMAIN=${WEB_DOMAIN:-http://localhost}
       - THEME_IS_DARK=${THEME_IS_DARK:-}
       - DISABLE_LLM_DOC_RELEVANCE=${DISABLE_LLM_DOC_RELEVANCE:-}
 

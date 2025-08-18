@@ -1,0 +1,159 @@
+{
+    "AdminSidebar": {
+        "exitAdmin": "Выйти из админки"
+    },
+    "AdvancedOptionsToggle": {
+        "defaultTitle": "Дополнительные параметры"
+    },
+    "ApiKeyModal": {
+        "title": "Настройка модели генеративного ИИ",
+        "description": "Пожалуйста, предоставьте API-ключ — вы всегда можете изменить его или переключить модели позже.",
+        "skipStepMessage": "Если вы хотите сначала осмотреться, вы можете",
+        "skipStepAction": "пропустить этот шаг"
+    },
+    "ChatSessionDisplay": {
+        "unnamedChat": "Чат без названия",
+        "chatWillExpire": "Этот чат истечёт",
+        "today": "сегодня",
+        "inDays": "через {days} {plural, plural, one {день} few {дня} many {дней} other {дней}}",
+        "deleteChatWarning": "Вы уверены, что хотите удалить этот чат?",
+        "cancel": "Отмена",
+        "delete": "Удалить"
+    },
+    "CleanupModal": {
+        "cleanup": "Очистить документы",
+        "instruction": "Сначала выберите, как далеко назад сохранить документы:",
+        "oneDay": "1 день",
+        "oneWeek": "1 неделя",
+        "oneMonth": "1 месяц",
+        "allTime": "Всё время",
+        "warningDeleteAll": "Внимание: Это удалит ВСЕ документы",
+        "warningDeleteAllDesc": "Это действие нельзя отменить. Удалённые документы невозможно восстановить.",
+        "noteUndone": "Примечание: Это действие нельзя отменить.",
+        "deleting": "Удаление..."
+    },
+    "ConnectorMultiSelect": {
+        "description": "Все документы, индексированные выбранными коннекторами, будут частью этого набора документов.",
+        "noConnectorsSelected": "Коннекторы не выбраны. Найдите и выберите коннекторы выше."
+    },
+    "ClientLayout": {
+        "existingConnectors": "Существующие коннекторы",
+        "addConnector": "Добавить коннектор",
+        "documentSets": "Наборы документов",
+        "explorer": "Проводник",
+        "feedback": "Обратная связь",
+        "assistants": "Ассистенты",
+        "slackBots": "Slack боты",
+        "actions": "Действия",
+        "standardAnswers": "Стандартные ответы",
+        "connectors": "Коннекторы",
+        "documentManagement": "Управление документами",
+        "customAssistants": "Пользовательские ассистенты",
+        "userManagement": "Управление пользователями",
+        "groups": "Группы",
+        "configuration": "Конфигурация",
+        "llm": "LLM",
+        "searchSettings": "Настройки поиска",
+        "documentProcessing": "Обработка документов",
+        "knowledgeGraph": "Граф знаний",
+        "users": "Пользователи",
+        "apiKeys": "API-ключи",
+        "tokenRateLimits": "Лимиты токенов",
+        "performance": "Производительность",
+        "usageStatistics": "Статистика использования",
+        "queryHistory": "История запросов",
+        "customAnalytics": "Пользовательская аналитика",
+        "settings": "Настройки",
+        "workspaceSettings": "Настройки рабочего пространства",
+        "whitelabeling": "Белая марка",
+        "billing": "Биллинг",
+        "warning": "Внимание:",
+        "trialEnding": "Ваш пробный период заканчивается менее чем через 5 дней, а способ оплаты не добавлен.",
+        "updateBilling": "Обновить платёжную информацию"
+    },
+    "CustomLLMProviderUpdateForm": {
+        "enable": "Включить",
+        "update": "Обновить"
+    },
+    "DeleteEntityModal": {
+        "delete": "Удалить",
+        "deleteWarning": "Вы уверены, что хотите удалить {entityType} «{entityName}»? Это действие нельзя отменить.",
+        "cancel": "Отмена"
+    },
+    "SearchMultiSelectDropdown": {
+        "inputPlaceholder": "Поиск или введите пользовательское значение...",
+        "inputPlaceholder2": "Поиск...",
+        "useAsCustomValue": "Использовать «{searchTerm}» как пользовательское значение",
+        "createLabel": "Создать метку «{searchTerm}»",
+        "noMatchesFound": "Совпадений не найдено"
+    },
+    "DefaultDropdown": {
+        "default": "По умолчанию",
+        "selectOption": "Выберите опцию..."
+    },
+    "HistorySidebar": {
+        "newChat": "Новый чат",
+        "myDocuments": "Мои документы",
+        "promptShortcuts": "Быстрые промпты",
+        "assistants": "Ассистенты",
+        "exploreAssistants": "Обзор ассистентов"
+    },
+    "TextView": {
+        "zoomOut": "Уменьшить",
+        "zoomIn": "Увеличить",
+        "download": "Скачать",
+        "close": "Закрыть",
+        "loadingDocument": "Загрузка документа...",
+        "notSupported": "Этот формат файла не поддерживается для предпросмотра.",
+        "downloadFile": "Скачать файл"
+    },
+    "UnconfiguredLlmProviderText": {
+        "noSources": "Вы пока не добавили ни одного источника. Пожалуйста, добавьте",
+        "aSource": "источник",
+        "toContinue": "чтобы продолжить.",
+        "noLlmProvider": "Обратите внимание, что вы ещё не настроили LLM провайдера. Вы можете настроить его",
+        "here": "здесь"
+    },
+    "LogoWithText": {
+        "newChat": "Новый чат",
+        "unpinSidebar": "Открепить боковую панель",
+        "pinSidebar": "Закрепить боковую панель"
+    },
+    "LoginText": {
+        "logInTo": "Войти в",
+        "appName": "Finam"
+    },
+    "LLMProviderUpdateForm": {
+        "enable": "Включить",
+        "update": "Обновить"
+    },
+    "WelcomeModal": {
+        "welcomeToOnyx": "Добро пожаловать в Onyx!",
+        "welcomeText1": "Onyx предоставляет все знания вашей компании под рукой,\nготовые к мгновенному доступу.",
+        "welcomeText2": "Для начала работы нам нужно настроить API-ключ для провайдера\nязыковой модели (LLM). Этот ключ позволяет Onyx взаимодействовать с моделью ИИ,\nобеспечивая интеллектуальные ответы на ваши запросы."
+    },
+    "Page": {
+        "completeYourSignUp": "Завершите регистрацию",
+        "signUp": "Зарегистрироваться в Finam"
+    },
+    
+    "PagesTab": {
+        "chats": "Чаты",
+        "searchChats": "Поиск чатов",
+        "createGroup": "Создать группу",
+        "enterGroupName": "Введите название группы",
+        "trySendingMessage": "Попробуйте отправить сообщение! История ваших чатов появится здесь."
+    },
+    "Status": {
+        "existingConnectors": "Существующие коннекторы",
+        "addConnector": "Добавить коннектор"
+    },
+    "UserDropdown": {
+        "login": "Войти",
+        "logout": "Выйти",
+        "notifications": "Уведомления",
+        "userSettings": "Настройки пользователя",
+        "curatorPanel": "Панель куратора",
+        "adminPanel": "Панель администратора"
+    }
+}

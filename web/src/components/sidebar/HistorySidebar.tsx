@@ -13,6 +13,7 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip";
+import { useTranslations } from 'next-intl';
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChatSession } from "@/app/chat/interfaces";
@@ -189,6 +190,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
     },
     ref: ForwardedRef<HTMLDivElement>
   ) => {
+    const t = useTranslations('HistorySidebar');
     const searchParams = useSearchParams();
     const router = useRouter();
     const { user, toggleAssistantPinnedStatus } = useUser();
@@ -307,7 +309,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
               >
                 <NewChatIcon size={20} className="flex-none" />
                 <p className="my-auto flex font-normal  items-center ">
-                  New Chat
+                  {t("newChat")}
                 </p>
               </Link>
               <Link
@@ -319,7 +321,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
                   className="flex-none text-text-history-sidebar-button"
                 />
                 <p className="my-auto flex font-normal items-center text-base">
-                  My Documents
+                  {t("myDocuments")}
                 </p>
               </Link>
               {user?.preferences?.shortcut_enabled && (
@@ -332,7 +334,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
                     className="flex-none text-text-history-sidebar-button"
                   />
                   <p className="my-auto flex font-normal items-center text-base">
-                    Prompt Shortcuts
+                    {t("promptShortcuts")}
                   </p>
                 </Link>
               )}
@@ -340,7 +342,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
           )}
           <div className="h-full  relative overflow-x-hidden overflow-y-auto">
             <div className="flex px-4 font-normal text-sm gap-x-2 leading-normal text-text-500/80 dark:text-[#D4D4D4] items-center font-normal leading-normal">
-              Assistants
+              {t("assistants")}
             </div>
             <DndContext
               sensors={sensors}
@@ -410,7 +412,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
                 onClick={() => setShowAssistantsModal(true)}
                 className="w-full cursor-pointer text-base text-black dark:text-[#D4D4D4] hover:bg-background-chat-hover flex items-center gap-x-2 py-1 px-2 rounded-md"
               >
-                Explore Assistants
+                {t("exploreAssistants")}
               </button>
             </div>
 

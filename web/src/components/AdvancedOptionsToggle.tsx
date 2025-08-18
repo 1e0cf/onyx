@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from 'next-intl';
 import { Button } from "@/components/ui/button";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 
@@ -13,6 +14,8 @@ export function AdvancedOptionsToggle({
   setShowAdvancedOptions,
   title,
 }: AdvancedOptionsToggleProps) {
+  const t = useTranslations('AdvancedOptionsToggle');
+  
   return (
     <Button
       type="button"
@@ -22,7 +25,7 @@ export function AdvancedOptionsToggle({
       onClick={() => setShowAdvancedOptions(!showAdvancedOptions)}
       className="text-xs mr-auto !p-0 text-text-950 hover:text-text-500"
     >
-      {title || "Advanced Options"}
+      {title || t('defaultTitle')} {/* Advanced Options */}
     </Button>
   );
 }

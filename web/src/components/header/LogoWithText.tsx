@@ -13,6 +13,7 @@ import { pageType } from "@/components/sidebar/types";
 import { Logo } from "../logo/Logo";
 import Link from "next/link";
 import { LogoComponent } from "@/components/logo/FixedLogo";
+import { useTranslations } from 'next-intl';
 
 export default function LogoWithText({
   toggleSidebar,
@@ -35,6 +36,7 @@ export default function LogoWithText({
 }) {
   const combinedSettings = useContext(SettingsContext);
   const enterpriseSettings = combinedSettings?.enterpriseSettings;
+  const t = useTranslations('LogoWithText');
   return (
     <div
       className={`${
@@ -106,7 +108,7 @@ export default function LogoWithText({
                 />
               </Link>
             </TooltipTrigger>
-            <TooltipContent>New Chat</TooltipContent>
+            <TooltipContent>{t("newChat")}</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       )}
@@ -136,7 +138,7 @@ export default function LogoWithText({
                 </button>
               </TooltipTrigger>
               <TooltipContent className="!border-none">
-                {toggled ? `Unpin sidebar` : "Pin sidebar"}
+                {toggled ? t("unpinSidebar") : t("pinSidebar")}
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

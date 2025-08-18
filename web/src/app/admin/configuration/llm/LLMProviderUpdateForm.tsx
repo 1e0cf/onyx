@@ -24,6 +24,7 @@ import { PopupSpec } from "@/components/admin/connectors/Popup";
 import * as Yup from "yup";
 import isEqual from "lodash/isEqual";
 import { IsPublicGroupSelector } from "@/components/IsPublicGroupSelector";
+import { useTranslations } from "next-intl";
 
 export function LLMProviderUpdateForm({
   llmProviderDescriptor,
@@ -45,7 +46,7 @@ export function LLMProviderUpdateForm({
   firstTimeConfiguration?: boolean;
 }) {
   const { mutate } = useSWRConfig();
-
+  const t = useTranslations("LLMProviderUpdateForm");
   const [isTesting, setIsTesting] = useState(false);
   const [testError, setTestError] = useState<string>("");
 
@@ -460,9 +461,9 @@ export function LLMProviderUpdateForm({
               {isTesting ? (
                 <LoadingAnimation text="Testing" />
               ) : existingLlmProvider ? (
-                "Update"
+                t("update")
               ) : (
-                "Enable"
+                t("enable")
               )}
             </Button>
             {existingLlmProvider && (

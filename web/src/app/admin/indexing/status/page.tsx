@@ -12,6 +12,7 @@ import {
 } from "@/lib/hooks";
 import { usePopupFromQuery } from "@/components/popup/PopupFromQuery";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 function Main() {
   const {
@@ -96,6 +97,7 @@ function Main() {
 }
 
 export default function Status() {
+  const t = useTranslations("Status");
   const { popup } = usePopupFromQuery({
     "connector-created": {
       message: "Connector created successfully",
@@ -112,10 +114,10 @@ export default function Status() {
       {popup}
       <AdminPageTitle
         icon={<NotebookIcon size={32} />}
-        title="Existing Connectors"
+        title={t("existingConnectors")}
         farRightElement={
           <Link href="/admin/add-connector">
-            <Button variant="success-reverse">Add Connector</Button>
+            <Button variant="success-reverse">{t("addConnector")}</Button>
           </Link>
         }
       />

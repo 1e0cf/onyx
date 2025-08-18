@@ -1,4 +1,5 @@
 import { useProviderStatus } from "./ProviderContext";
+import { useTranslations } from 'next-intl';
 
 export function UnconfiguredLlmProviderText({
   showConfigureAPIKey,
@@ -8,30 +9,29 @@ export function UnconfiguredLlmProviderText({
   noSources?: boolean;
 }) {
   const { shouldShowConfigurationNeeded } = useProviderStatus();
-
+  const t = useTranslations('UnconfiguredLlmProviderText');
   return (
     <>
       {noSources ? (
         <p className="text-base text-center w-full text-subtle">
-          You have not yet added any sources. Please add{" "}
+          {t("noSources")}
           <a
             href="/admin/add-connector"
             className="text-link hover:underline cursor-pointer"
           >
-            a source
+            {t("aSource")}
           </a>{" "}
-          to continue.
+          {t("toContinue")}
         </p>
       ) : (
         shouldShowConfigurationNeeded && (
           <p className="text-base text-center w-full text-subtle">
-            Please note that you have not yet configured an LLM provider. You
-            can configure one{" "}
+            {t("noLlmProvider")}
             <button
               onClick={showConfigureAPIKey}
               className="text-link hover:underline cursor-pointer"
-            >
-              here
+            > 
+              {t("here")}
             </button>
             .
           </p>

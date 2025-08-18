@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslations } from 'next-intl';
 import { ConnectorStatus } from "@/lib/types";
 import { ConnectorTitle } from "@/components/admin/connectors/ConnectorTitle";
 import { X, Search } from "lucide-react";
@@ -26,6 +27,7 @@ export const ConnectorMultiSelect = ({
   placeholder = "Search connectors...",
   showError = false,
 }: ConnectorMultiSelectProps) => {
+  const t = useTranslations('ConnectorMultiSelect');
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -116,8 +118,9 @@ export const ConnectorMultiSelect = ({
       {label && <Label className="text-base font-medium">{label}</Label>}
 
       <p className="text-xs text-neutral-500 dark:text-neutral-400">
-        All documents indexed by the selected connectors will be part of this
-        document set.
+        {t("description")}
+        {/* All documents indexed by the selected connectors will be part of this
+        document set. */}
       </p>
       <div className="relative">
         <div
@@ -218,7 +221,7 @@ export const ConnectorMultiSelect = ({
         </div>
       ) : (
         <div className="mt-3 p-3 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-md bg-neutral-50 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 text-xs">
-          No connectors selected. Search and select connectors above.
+          {t("noConnectorsSelected")} {/* No connectors selected. Search and select connectors above. */}
         </div>
       )}
 

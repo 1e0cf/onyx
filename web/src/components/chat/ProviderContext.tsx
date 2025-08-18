@@ -28,7 +28,6 @@ export function ProviderContextProvider({
 }) {
   const { user } = useUser();
   const router = useRouter();
-
   const [validProviderExists, setValidProviderExists] = useState<boolean>(true);
   const [providerOptions, setProviderOptions] = useState<
     WellKnownLLMProviderDescriptor[]

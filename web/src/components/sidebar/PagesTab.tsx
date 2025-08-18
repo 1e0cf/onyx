@@ -43,6 +43,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useChatContext } from "@/components/context/ChatContext";
 import { SettingsContext } from "@/components/settings/SettingsProvider";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { useTranslations } from 'next-intl';
 
 interface SortableFolderProps {
   folder: Folder;
@@ -115,6 +116,7 @@ export function PagesTab({
   showShareModal?: (chatSession: ChatSession) => void;
   showDeleteModal?: (chatSession: ChatSession) => void;
 }) {
+  const t = useTranslations("PagesTab");
   const { setPopup, popup } = usePopup();
   const router = useRouter();
   const [isCreatingFolder, setIsCreatingFolder] = useState(false);
@@ -324,7 +326,7 @@ export function PagesTab({
       {popup}
       <div className="px-4 mt-2 group mr-2 bg-background-sidebar dark:bg-transparent z-20">
         <div className="flex  group justify-between text-sm gap-x-2 text-text-300/80 items-center font-normal leading-normal">
-          <p>Chats</p>
+          <p>{t("chats")}</p>
 
           <TooltipProvider delayDuration={1000}>
             <Tooltip>
@@ -341,7 +343,7 @@ export function PagesTab({
                   />
                 </button>
               </TooltipTrigger>
-              <TooltipContent>Search Chats</TooltipContent>
+              <TooltipContent>{t("searchChats")}</TooltipContent>
             </Tooltip>
           </TooltipProvider>
 
@@ -350,7 +352,7 @@ export function PagesTab({
             className="flex group-hover:opacity-100 opacity-0 transition duration-200 cursor-pointer gap-x-1 items-center text-black text-xs font-medium leading-normal"
           >
             <FiPlus size={12} className="flex-none" />
-            Create Group
+            {t("createGroup")}
           </button>
         </div>
       </div>
@@ -367,7 +369,7 @@ export function PagesTab({
               }}
               ref={newFolderInputRef}
               type="text"
-              placeholder="Enter group name"
+              placeholder={t("enterGroupName")}
               className="text-sm font-medium bg-transparent outline-none w-full pb-1 border-b border-background-500 transition-colors duration-200"
             />
             <div className="flex -my-1">
@@ -467,7 +469,7 @@ export function PagesTab({
 
         {isHistoryEmpty && (!folders || folders.length === 0) && (
           <p className="text-sm max-w-full mt-2 w-[250px]">
-            Try sending a message! Your chat history will appear here.
+            {t("trySendingMessage")}
           </p>
         )}
       </div>

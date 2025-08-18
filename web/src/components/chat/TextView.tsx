@@ -11,7 +11,7 @@ import {
 import { Download, XIcon, ZoomIn, ZoomOut } from "lucide-react";
 import { MinimalOnyxDocument } from "@/lib/search/interfaces";
 import MinimalMarkdown from "@/components/chat/MinimalMarkdown";
-
+import { useTranslations } from 'next-intl';
 interface TextViewProps {
   presentingDocument: MinimalOnyxDocument;
   onClose: () => void;
@@ -20,6 +20,7 @@ export default function TextView({
   presentingDocument,
   onClose,
 }: TextViewProps) {
+  const t = useTranslations('TextView');
   const [zoom, setZoom] = useState(100);
   const [fileContent, setFileContent] = useState("");
   const [fileUrl, setFileUrl] = useState("");
@@ -149,20 +150,20 @@ export default function TextView({
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="icon" onClick={handleZoomOut}>
               <ZoomOut className="h-4 w-4" />
-              <span className="sr-only">Zoom Out</span>
+              <span className="sr-only">{t("zoomOut")}</span>
             </Button>
             <span className="text-sm">{zoom}%</span>
             <Button variant="ghost" size="icon" onClick={handleZoomIn}>
               <ZoomIn className="h-4 w-4" />
-              <span className="sr-only">Zoom In</span>
+              <span className="sr-only">{t("zoomIn")}</span>
             </Button>
             <Button variant="ghost" size="icon" onClick={handleDownload}>
               <Download className="h-4 w-4" />
-              <span className="sr-only">Download</span>
+              <span className="sr-only">{t("download")}</span>
             </Button>
             <Button variant="ghost" size="icon" onClick={onClose}>
               <XIcon className="h-4 w-4" />
-              <span className="sr-only">Close</span>
+              <span className="sr-only">{t("close")}</span>
             </Button>
           </div>
         </DialogHeader>
@@ -172,7 +173,7 @@ export default function TextView({
               <div className="flex flex-col items-center justify-center h-full">
                 <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-primary"></div>
                 <p className="mt-6 text-lg font-medium text-muted-foreground">
-                  Loading document...
+                  {t("loadingDocument")}
                 </p>
               </div>
             ) : (
@@ -202,10 +203,10 @@ export default function TextView({
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full">
                     <p className="text-lg font-medium text-muted-foreground">
-                      This file format is not supported for preview.
+                      {t("notSupported")}
                     </p>
                     <Button className="mt-4" onClick={handleDownload}>
-                      Download File
+                      {t("downloadFile")}
                     </Button>
                   </div>
                 )}

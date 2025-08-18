@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useTranslations } from 'next-intl';
 import { ChevronDownIcon, PlusIcon } from "./icons/icons";
 import { FiCheck, FiChevronDown } from "react-icons/fi";
 import { Popover } from "./popover/Popover";
@@ -65,6 +66,7 @@ export function SearchMultiSelectDropdown({
   initialSearchTerm?: string;
   allowCustomValues?: boolean;
 }) {
+  const t = useTranslations('SearchMultiSelectDropdown');
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -122,7 +124,7 @@ export function SearchMultiSelectDropdown({
         <input
           type="text"
           placeholder={
-            allowCustomValues ? "Search or enter custom value..." : "Search..."
+            allowCustomValues ? t("inputPlaceholder") : t('inputPlaceholder2')
           }
           value={searchTerm}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -200,7 +202,7 @@ export function SearchMultiSelectDropdown({
                   onClick={handleCustomValueSelect}
                 >
                   <PlusIcon className="w-4 h-4 mr-2 text-text-600" />
-                  Use &quot;{searchTerm}&quot; as custom value
+                  {t("useAsCustomValue", {searchTerm})}
                 </button>
               )}
 
@@ -222,7 +224,7 @@ export function SearchMultiSelectDropdown({
                     }}
                   >
                     <PlusIcon className="w-4 h-4 mr-2 text-text-600" />
-                    Create label &quot;{searchTerm}&quot;
+                    {t("createLabel", {searchTerm})}
                   </button>
                 </>
               )}
@@ -231,7 +233,7 @@ export function SearchMultiSelectDropdown({
               ((!onCreate && !allowCustomValues) ||
                 searchTerm.trim() === "") && (
                 <div className="px-4 py-2.5 text-sm text-text-500">
-                  No matches found
+                  {t("noMatchesFound")}
                 </div>
               )}
           </div>
@@ -367,6 +369,7 @@ export const DefaultDropdown = forwardRef<HTMLDivElement, DefaultDropdownProps>(
     },
     ref
   ) => {
+    const t = useTranslations('DefaultDropdown');
     const selectedOption = options.find((option) => option.value === selected);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -391,8 +394,9 @@ export const DefaultDropdown = forwardRef<HTMLDivElement, DefaultDropdownProps>(
         <p className="line-clamp-1">
           {selectedOption?.name ||
             (includeDefault
-              ? defaultValue || "Default"
-              : "Select an option...")}
+              ? defaultValue || t("default")
+              : t("selectOption")
+            )}
         </p>
         <FiChevronDown className="my-auto ml-auto" />
       </div>
@@ -415,7 +419,7 @@ export const DefaultDropdown = forwardRef<HTMLDivElement, DefaultDropdownProps>(
         {includeDefault && (
           <DefaultDropdownElement
             key={-1}
-            name="Default"
+            name={t('default')}
             onSelect={() => handleSelect(null)}
             isSelected={selected === null}
           />

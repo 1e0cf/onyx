@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslations } from 'next-intl';
 import { ChatSession } from "@/app/chat/interfaces";
 import { useState, useEffect, useContext, useRef, useCallback } from "react";
 import {
@@ -46,6 +47,7 @@ export function ChatSessionDisplay({
   isDragging?: boolean;
 }) {
   const router = useRouter();
+  const t = useTranslations("ChatSessionDisplay");
   const [isHovered, setIsHovered] = useState(false);
   const [isRenamingChat, setIsRenamingChat] = useState(false);
   const [isShareModalVisible, setIsShareModalVisible] = useState(false);
@@ -268,7 +270,7 @@ export function ChatSessionDisplay({
                   </div>
                 ) : (
                   <p className="break-all font-normal overflow-hidden dark:text-[#D4D4D4] whitespace-nowrap w-full mr-3 relative">
-                    {chatName || `Unnamed Chat`}
+                    {chatName || t("unnamedChat")}
                     <span
                       className={`absolute right-0 top-0 h-full w-2 bg-gradient-to-r from-transparent 
                       ${
@@ -289,12 +291,13 @@ export function ChatSessionDisplay({
                         line
                         content={
                           <p>
-                            This chat will expire{" "}
+                            {t("chatWillExpire")}
                             {daysUntilExpiration < 1
-                              ? "today"
-                              : `in ${daysUntilExpiration} day${
-                                  daysUntilExpiration !== 1 ? "s" : ""
-                                }`}
+                              ? t("today")
+                              : t("inDays", {
+                                  days: daysUntilExpiration,
+                                  plural: daysUntilExpiration !== 1 ? "s" : "",
+                                })}
                           </p>
                         }
                       >
@@ -356,20 +359,20 @@ export function ChatSessionDisplay({
                                 ) : (
                                   <div className="p-3">
                                     <p className="text-sm mb-3">
-                                      Are you sure you want to delete this chat?
+                                      {t("deleteChatWarning")}
                                     </p>
                                     <div className="flex justify-center gap-2">
                                       <button
                                         className="px-3 py-1 text-sm bg-background-200 rounded"
                                         onClick={handleCancelDelete}
                                       >
-                                        Cancel
+                                        {t("cancel")}
                                       </button>
                                       <button
                                         className="px-3 py-1 text-sm bg-red-500 text-white rounded"
                                         onClick={handleConfirmDelete}
                                       >
-                                        Delete
+                                        {t("delete")}
                                       </button>
                                     </div>
                                   </div>

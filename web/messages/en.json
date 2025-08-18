@@ -1,0 +1,158 @@
+{
+    "AdminSidebar": {
+        "exitAdmin": "Exit Admin"
+    },
+    "AdvancedOptionsToggle": {
+        "defaultTitle": "Advanced Options"
+    },
+    "ApiKeyModal": {
+        "title": "Configure a Generative AI Model",
+        "description": "Please provide an API Key – you can always change this or switch models later.",
+        "skipStepMessage": "If you would rather look around first, you can",
+        "skipStepAction": "skip this step"
+    },
+    "ChatSessionDisplay": {
+        "unnamedChat": "Unnamed Chat",
+        "chatWillExpire": "This chat will expire",
+        "today": "today",
+        "inDays": "in {days} day{plural}",
+        "deleteChatWarning": "Are you sure you want to delete this chat?",
+        "cancel": "Cancel",
+        "delete": "Delete"
+    },
+    "CleanupModal": {
+        "cleanup": "Cleanup Documents",
+        "instruction": "First, select how far back to keep your documents:",
+        "oneDay": "1 Day",
+        "oneWeek": "1 Week",
+        "oneMonth": "1 Month",
+        "allTime": "All Time",
+        "warningDeleteAll": "Warning: This will delete ALL documents",
+        "warningDeleteAllDesc": "This action cannot be undone. Deleted documents cannot be recovered.",
+        "noteUndone": "Note: This action cannot be undone.",
+        "deleting": "Deleting..."
+    },
+    "ConnectorMultiSelect": {
+        "description": "All documents indexed by the selected connectors will be part of this document set.",
+        "noConnectorsSelected": "No connectors selected. Search and select connectors above."
+    },
+    "ClientLayout": {
+        "existingConnectors": "Existing Connectors",
+        "addConnector": "Add Connector",
+        "documentSets": "Document Sets", 
+        "explorer": "Explorer",
+        "feedback": "Feedback",
+        "assistants": "Assistants",
+        "slackBots": "Slack Bots",
+        "actions": "Actions",
+        "standardAnswers": "Standard Answers",
+        "connectors": "Connectors",
+        "documentManagement": "Document Management",
+        "customAssistants": "Custom Assistants",
+        "userManagement": "User Management",
+        "groups": "Groups",
+        "configuration": "Configuration",
+        "llm": "LLM",
+        "searchSettings": "Search Settings",
+        "documentProcessing": "Document Processing",
+        "knowledgeGraph": "Knowledge Graph",
+        "users": "Users",
+        "apiKeys": "API Keys",
+        "tokenRateLimits": "Token Rate Limits",
+        "performance": "Performance",
+        "usageStatistics": "Usage Statistics",
+        "queryHistory": "Query History",
+        "customAnalytics": "Custom Analytics",
+        "settings": "Settings",
+        "workspaceSettings": "Workspace Settings",
+        "whitelabeling": "Whitelabeling",
+        "billing": "Billing",
+        "warning": "Warning:",
+        "trialEnding": "Your trial ends in less than 5 days and no payment method has been added.",
+        "updateBilling": "Update Billing Information"
+    },
+    "CustomLLMProviderUpdateForm": {
+        "enable": "Enable",
+        "update": "Update"
+    },
+    "DeleteEntityModal": {
+        "delete": "Delete",
+        "deleteWarning": "Are you sure you want to delete the {entityType} &quot;{entityName}\n&quot;? This action cannot be undone.",
+        "cancel": "Cancel"
+    },
+    "SearchMultiSelectDropdown": {
+        "inputPlaceholder": "Search or enter custom value...",
+        "inputPlaceholder2": "Search...",
+        "useAsCustomValue": "Use &quot;{searchTerm}&quot; as custom value",
+        "createLabel": "Create label &quot;{searchTerm}&quot;",
+        "noMatchesFound": "No matches found"
+    },
+    "DefaultDropdown": {
+        "default": "Default",
+        "selectOption": "Select an option..."
+    },
+    "HistorySidebar": {
+        "newChat": "New Chat",
+        "myDocuments": "My Documents",
+        "promptShortcuts": "Prompt Shortcuts",
+        "assistants": "Assistants",
+        "exploreAssistants": "Explore Assistants"
+    },
+    "TextView": {
+        "zoomOut": "Zoom Out",
+        "zoomIn": "Zoom In",
+        "download": "Download",
+        "close": "Close",
+        "loadingDocument": "Loading document...",
+        "notSupported": "This file format is not supported for preview.",
+        "downloadFile": "Download File"
+    },
+    "UnconfiguredLlmProviderText": {
+        "noSources": "You have not yet added any sources. Please add",
+        "aSource": "a source",
+        "toContinue": "to continue.",
+        "noLlmProvider": "Please note that you have not yet configured an LLM provider. You\ncan configure one",
+        "here": "here"
+    },
+    "LogoWithText": {
+        "newChat": "New Chat",
+        "unpinSidebar": "Unpin Sidebar",
+        "pinSidebar": "Pin Sidebar"
+    },
+    "LoginText": {
+        "logInTo": "Log In to",
+        "appName": "Onyx"
+    },
+    "LLMProviderUpdateForm": {
+        "enable": "Enable",
+        "update": "Update"
+    },
+    "WelcomeModal": {
+        "welcomeToOnyx": "Welcome to Onyx!",
+        "welcomeText1": "Onyx brings all your company's knowledge to your fingertips,\nready to be accessed instantly.",
+        "welcomeText2": "To get started, we need to set up an API key for the Language Model\n(LLM) provider. This key allows Onyx to interact with the AI model,\nenabling intelligent responses to your queries."
+    },
+    "Page": {
+        "completeYourSignUp": "Complete your sign up",
+        "signUp": "Sign Up for Onyx"
+    },
+    "PagesTab": {
+        "chats": "Chats",
+        "searchChats": "Search Chats",
+        "createGroup": "Create Group",
+        "enterGroupName": "Enter group name",
+        "trySendingMessage": "Try sending a message! Your chat history will appear here."
+    },
+    "Status": {
+        "existingConnectors": "Existing Connectors",
+        "addConnector": "Add Connector"
+    },
+    "UserDropdown": {
+        "login": "Log In",
+        "logout": "Log Out",
+        "notifications": "Notifications",
+        "userSettings": "User Settings",
+        "curatorPanel": "Curator Panel",
+        "adminPanel": "Admin Panel"
+    }
+}

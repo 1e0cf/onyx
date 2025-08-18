@@ -17,6 +17,7 @@ import { useUser } from "./user/UserProvider";
 import { Notifications } from "./chat/Notifications";
 import useSWR from "swr";
 import { errorHandlingFetcher } from "@/lib/fetcher";
+import { useTranslations } from "next-intl";
 
 interface DropdownOptionProps {
   href?: string;
@@ -64,6 +65,7 @@ export function UserDropdown({
   toggleUserSettings?: () => void;
   hideUserDropdown?: boolean;
 }) {
+  const t = useTranslations("UserDropdown");
   const { user, isCurator } = useUser();
   const [userInfoVisible, setUserInfoVisible] = useState(false);
   const userInfoRef = useRef<HTMLDivElement>(null);
@@ -197,7 +199,7 @@ export function UserDropdown({
               <DropdownOption
                 onClick={() => router.push("/auth/login")}
                 icon={<UserIcon className="h-5w-5 my-auto " />}
-                label="Log In"
+                label={t("login")}
               />
             ) : (
               <>
@@ -243,14 +245,14 @@ export function UserDropdown({
                   <DropdownOption
                     href="/admin/indexing/status"
                     icon={<LightSettingsIcon size={16} className="my-auto" />}
-                    label="Admin Panel"
+                    label={t("adminPanel")}
                   />
                 ) : (
                   showCuratorPanel && (
                     <DropdownOption
                       href="/admin/indexing/status"
                       icon={<LightSettingsIcon size={16} className="my-auto" />}
-                      label="Curator Panel"
+                      label={t("curatorPanel")}
                     />
                   )
                 )}
@@ -259,7 +261,7 @@ export function UserDropdown({
                   <DropdownOption
                     onClick={toggleUserSettings}
                     icon={<UserIcon size={16} className="my-auto" />}
-                    label="User Settings"
+                    label={t("userSettings")}
                   />
                 )}
 
@@ -269,7 +271,7 @@ export function UserDropdown({
                     setShowNotifications(true);
                   }}
                   icon={<BellIcon size={16} className="my-auto" />}
-                  label={`Notifications ${
+                  label={`${t("notifications")} ${
                     notifications && notifications.length > 0
                       ? `(${notifications.length})`
                       : ""
@@ -287,7 +289,7 @@ export function UserDropdown({
                   <DropdownOption
                     onClick={handleLogout}
                     icon={<FiLogOut size={16} className="my-auto" />}
-                    label="Log out"
+                    label={t("logout")}
                   />
                 )}
               </>

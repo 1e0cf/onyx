@@ -8,6 +8,23 @@ For general information, please read the instructions in this [README](https://g
 
 This part is elaborated precisely in this [README](https://github.com/onyx-dot-app/onyx/blob/main/deployment/README.md) in section _Docker Compose_. If you have any questions, please feel free to open an issue or get in touch in slack for support.
 
+### Configuration
+
+#### Setting up WEB_DOMAIN
+
+To ensure that favicon and other assets load correctly, you should set the `WEB_DOMAIN` environment variable:
+
+- For local development: `export WEB_DOMAIN=http://localhost`
+- For production with a custom domain: `export WEB_DOMAIN=https://your-domain.com`
+
+If `WEB_DOMAIN` is not set, the system will default to `http://localhost`, which should work for most local deployments.
+
+You can set this variable before running docker-compose:
+```bash
+export WEB_DOMAIN=http://localhost
+sudo docker compose -f deployment/docker_compose/docker-compose.dev.yml -p onyx-stack up -d --build --force-recreate
+```
+
 ## Deploy in a system with GPU support
 
 Running Model servers with GPU support while indexing and querying can result in significant improvements in performance. This is highly recommended if you have access to resources. Currently, Onyx offloads embedding model and tokenizers to the GPU VRAM and the size needed depends on chosen embedding model. For example, the embedding model `nomic-ai/nomic-embed-text-v1` takes up about 1GB of VRAM. That means running this model for inference and embedding pipeline would require roughly 2GB of VRAM.

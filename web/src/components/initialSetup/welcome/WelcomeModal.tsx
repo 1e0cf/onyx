@@ -14,6 +14,7 @@ import { User } from "@/lib/types";
 import { useProviderStatus } from "@/components/chat/ProviderContext";
 
 import { usePopup } from "@/components/admin/connectors/Popup";
+import { useTranslations } from 'next-intl';
 
 function setWelcomeFlowComplete() {
   Cookies.set(COMPLETED_WELCOME_FLOW_COOKIE, "true", { expires: 365 });
@@ -26,7 +27,7 @@ export function CompletedWelcomeFlowDummyComponent() {
 
 export function WelcomeModal({ user }: { user: User | null }) {
   const router = useRouter();
-
+  const t = useTranslations("WelcomeModal");
   const [providerOptions, setProviderOptions] = useState<
     WellKnownLLMProviderDescriptor[]
   >([]);
@@ -62,18 +63,15 @@ export function WelcomeModal({ user }: { user: User | null }) {
           setWelcomeFlowComplete();
           router.refresh();
         }}
-        title={"Welcome to Onyx!"}
+        title={t("welcomeToOnyx")}
         width="w-full max-h-[900px] overflow-y-scroll max-w-3xl"
       >
         <div>
           <Text className="mb-4">
-            Onyx brings all your company&apos;s knowledge to your fingertips,
-            ready to be accessed instantly.
+            {t("welcomeText1")}
           </Text>
           <Text className="mb-4">
-            To get started, we need to set up an API key for the Language Model
-            (LLM) provider. This key allows Onyx to interact with the AI model,
-            enabling intelligent responses to your queries.
+            {t("welcomeText2")}
           </Text>
 
           <div className="max-h-[900px] overflow-y-scroll">

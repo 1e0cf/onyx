@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from 'next-intl';
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/Modal";
 
@@ -19,6 +20,7 @@ export const DeleteEntityModal: React.FC<DeleteEntityModalProps> = ({
   entityName,
   additionalWarning,
 }) => {
+  const t = useTranslations('DeleteEntityModal');
   if (!isOpen) return null;
 
   return (
@@ -30,18 +32,17 @@ export const DeleteEntityModal: React.FC<DeleteEntityModalProps> = ({
     >
       <>
         <div className="p-6">
-          <h2 className="text-xl font-bold mb-4">Delete {entityType}</h2>
+          <h2 className="text-xl font-bold mb-4">{t("delete")} {entityType}</h2>
           <p className="mb-6 line-wrap break-words">
-            Are you sure you want to delete the {entityType} &quot;{entityName}
-            &quot;? This action cannot be undone.
+            {t("deleteWarning", { entityType, entityName })}
             {additionalWarning}
           </p>
           <div className="flex justify-end space-x-4">
             <Button onClick={onClose} variant="outline">
-              Cancel
+              {t("cancel")}
             </Button>
             <Button onClick={onConfirm} variant="destructive">
-              Delete
+              {t("delete")}
             </Button>
           </div>
         </div>

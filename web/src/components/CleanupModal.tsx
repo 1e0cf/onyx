@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslations } from 'next-intl';
 import { Button } from "@/components/ui/button";
 import { AlertCircle, Calendar, Clock, Loader2, Trash, X } from "lucide-react";
 
@@ -20,6 +21,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
   onClose,
   onConfirm,
 }) => {
+  const t = useTranslations('CleanupModal');
   const [selectedPeriod, setSelectedPeriod] = useState<CleanupPeriod | null>(
     null
   );
@@ -107,7 +109,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
       <div className="max-w-xl w-full bg-white dark:bg-neutral-800 p-5 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-medium dark:text-white">
-            Cleanup Documents
+            {t('cleanup')} {/* Cleanup Documents */}
           </h2>
           <Button
             variant="ghost"
@@ -121,7 +123,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
         </div>
 
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-5">
-          First, select how far back to keep your documents:
+          {t('instruction')} {/* First, select how far back to keep your documents: */}
         </p>
 
         <div className="flex space-x-3 mb-5">
@@ -133,7 +135,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
           >
             <div className="flex flex-col items-center">
               <Clock className={getIconClass(CleanupPeriod.Day)} />
-              <span className="font-medium">1 Day</span>
+              <span className="font-medium">{t('oneDay')}</span> {/* 1 Day */}
             </div>
           </Button>
 
@@ -145,7 +147,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
           >
             <div className="flex flex-col items-center">
               <Calendar className={getIconClass(CleanupPeriod.Week)} />
-              <span className="font-medium">1 Week</span>
+              <span className="font-medium">{t('oneWeek')}</span> {/* 1 Week */}
             </div>
           </Button>
 
@@ -157,7 +159,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
           >
             <div className="flex flex-col items-center">
               <Calendar className={getIconClass(CleanupPeriod.Month)} />
-              <span className="font-medium">1 Month</span>
+              <span className="font-medium">{t('oneMonth')}</span> {/* 1 Month */}
             </div>
           </Button>
 
@@ -169,7 +171,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
           >
             <div className="flex flex-col items-center">
               <Trash className={getIconClass(CleanupPeriod.All)} />
-              <span className="font-medium">All Time</span>
+              <span className="font-medium">{t('allTime')}</span> {/* All Time */}
             </div>
           </Button>
         </div>
@@ -179,11 +181,11 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
             <AlertCircle className="text-red-500 dark:text-red-400 h-5 w-5 mt-0.5 mr-2 flex-shrink-0" />
             <div>
               <p className="text-sm font-medium text-red-800 dark:text-red-300">
-                Warning: This will delete ALL documents
+                {t('warningDeleteAll')} {/* Warning: This will delete ALL documents */}
               </p>
               <p className="text-xs text-red-700 dark:text-red-400 mt-1">
-                This action cannot be undone. Deleted documents cannot be
-                recovered.
+                {t('warningDeleteAllDesc')} {/* This action cannot be undone. Deleted documents cannot be
+                recovered. */}
               </p>
             </div>
           </div>
@@ -191,7 +193,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
 
         <div className="flex justify-between items-center border-t border-neutral-200 dark:border-neutral-700 pt-4 mt-2">
           <p className="text-xs text-neutral-500 dark:text-neutral-400">
-            Note: This action cannot be undone.
+            {t('noteUndone')} {/* Note: This action cannot be undone. */}
           </p>
 
           <div className="flex gap-3">
@@ -212,7 +214,7 @@ export const CleanupModal: React.FC<CleanupModalProps> = ({
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Deleting...
+                  {t('deleting')} {/* Deleting... */}
                 </>
               ) : (
                 getDeleteButtonText()
