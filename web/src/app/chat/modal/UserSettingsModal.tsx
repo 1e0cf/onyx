@@ -31,6 +31,7 @@ import { FederatedConnectorOAuthStatus } from "@/components/chat/FederatedOAuthM
 import { SourceIcon } from "@/components/SourceIcon";
 import { ValidSources, CCPairBasicInfo } from "@/lib/types";
 import { getSourceMetadata } from "@/lib/sources";
+import { useTranslations } from "next-intl";
 
 type SettingsSection = "settings" | "password" | "connectors";
 
@@ -75,6 +76,7 @@ export function UserSettingsModal({
   const [isDeleteAllLoading, setIsDeleteAllLoading] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [isDisconnecting, setIsDisconnecting] = useState<number | null>(null);
+  const t = useTranslations("UserSettingsModal");
 
   const hasConnectors =
     (ccPairs && ccPairs.length > 0) ||
@@ -297,7 +299,7 @@ export function UserSettingsModal({
       }`}
     >
       <div className="p-2 max-h-[80vh] flex flex-col">
-        <h2 className="text-xl font-bold mb-4">User Settings</h2>
+        <h2 className="text-xl font-bold mb-4">{t("title")}</h2>
         <Separator className="mb-6" />
         <div className="flex flex-1 min-h-0">
           {(showPasswordSection || hasConnectors) && (
@@ -313,7 +315,7 @@ export function UserSettingsModal({
                       }`}
                       onClick={() => setActiveSection("settings")}
                     >
-                      Settings
+                      {t("settings")}
                     </button>
                   </li>
                   {showPasswordSection && (
@@ -326,7 +328,7 @@ export function UserSettingsModal({
                         }`}
                         onClick={() => setActiveSection("password")}
                       >
-                        Password
+                        {t("password")}
                       </button>
                     </li>
                   )}
@@ -340,7 +342,7 @@ export function UserSettingsModal({
                         }`}
                         onClick={() => setActiveSection("connectors")}
                       >
-                        Connectors
+                        {t("connectors")}
                       </button>
                     </li>
                   )}
@@ -358,7 +360,7 @@ export function UserSettingsModal({
             {activeSection === "settings" && (
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium">Theme</h3>
+                  <h3 className="text-lg font-medium">{t("themeTitle")}</h3>
                   <Select
                     value={selectedTheme}
                     onValueChange={(value) => {
@@ -374,24 +376,24 @@ export function UserSettingsModal({
                         value="system"
                         icon={<Monitor className="h-4 w-4" />}
                       >
-                        System
+                        {t("themeSystem")}
                       </SelectItem>
                       <SelectItem
                         value="light"
                         icon={<Sun className="h-4 w-4" />}
                       >
-                        Light
+                        {t("themeLight")}
                       </SelectItem>
                       <SelectItem icon={<Moon />} value="dark">
-                        Dark
+                        {t("themeDark")}
                       </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium">Auto-scroll</h3>
-                    <SubLabel>Automatically scroll to new content</SubLabel>
+                    <h3 className="text-lg font-medium">{t("autoScroll")}</h3>
+                    <SubLabel>{t("autoScrollDesc")}</SubLabel>
                   </div>
                   <Switch
                     checked={user?.preferences.auto_scroll}
@@ -403,9 +405,9 @@ export function UserSettingsModal({
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-lg font-medium">
-                      Temperature override
+                      {t("temperature")}
                     </h3>
-                    <SubLabel>Set the temperature for the LLM</SubLabel>
+                    <SubLabel>{t("temperatureDesc")}</SubLabel>
                   </div>
                   <Switch
                     checked={user?.preferences.temperature_override_enabled}
@@ -416,8 +418,10 @@ export function UserSettingsModal({
                 </div>
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium">Prompt Shortcuts</h3>
-                    <SubLabel>Enable keyboard shortcuts for prompts</SubLabel>
+                    <h3 className="text-lg font-medium">
+                      {t("promptShortcuts")}
+                    </h3>
+                    <SubLabel>{t("promptShortcutsDesc")}</SubLabel>
                   </div>
                   <Switch
                     checked={user?.preferences?.shortcut_enabled}
@@ -427,7 +431,7 @@ export function UserSettingsModal({
                   />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium">Default Model</h3>
+                  <h3 className="text-lg font-medium">{t("model")}</h3>
                   <LLMSelector
                     userSettings
                     llmProviders={llmProviders}
@@ -460,8 +464,7 @@ export function UserSettingsModal({
                   {!showDeleteConfirmation ? (
                     <div className="space-y-3">
                       <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                        This will permanently delete all your chat sessions and
-                        cannot be undone.
+                        {t("deleteAllChatsWarning")}
                       </p>
                       <Button
                         variant="destructive"
@@ -469,7 +472,7 @@ export function UserSettingsModal({
                         onClick={() => setShowDeleteConfirmation(true)}
                       >
                         <FiTrash2 className="mr-2" size={14} />
-                        Delete All Chats
+                        {t("deleteAllChats")}
                       </Button>
                     </div>
                   ) : (
@@ -506,16 +509,15 @@ export function UserSettingsModal({
             {activeSection === "password" && (
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <h3 className="text-xl font-medium">Change Password</h3>
+                  <h3 className="text-xl font-medium">{t("changePassword")}</h3>
                   <SubLabel>
-                    Enter your current password and new password to change your
-                    password.
+                    {t("changePasswordDesc")}
                   </SubLabel>
                 </div>
                 <form onSubmit={handleChangePassword} className="w-full">
                   <div className="w-full">
                     <label htmlFor="currentPassword" className="block mb-1">
-                      Current Password
+                      {t("currentPassword")}
                     </label>
                     <Input
                       id="currentPassword"
@@ -528,7 +530,7 @@ export function UserSettingsModal({
                   </div>
                   <div className="w-full">
                     <label htmlFor="newPassword" className="block mb-1">
-                      New Password
+                      {t("newPassword")}
                     </label>
                     <Input
                       id="newPassword"
@@ -541,7 +543,7 @@ export function UserSettingsModal({
                   </div>
                   <div className="w-full">
                     <label htmlFor="confirmPassword" className="block mb-1">
-                      Confirm New Password
+                      {t("confirmNewPassword")}
                     </label>
                     <Input
                       id="confirmPassword"
@@ -553,7 +555,7 @@ export function UserSettingsModal({
                     />
                   </div>
                   <Button type="submit" disabled={isLoading} className="w-full">
-                    {isLoading ? "Changing..." : "Change Password"}
+                    {isLoading ? t("changing") : t("changePassword")}
                   </Button>
                 </form>
               </div>
@@ -562,18 +564,17 @@ export function UserSettingsModal({
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-medium mb-4">
-                    Connected Services
+                    {t("connectedServices")}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Manage your connected services to search across all your
-                    content.
+                    {t("connectedServicesDesc")}
                   </p>
 
                   {/* Indexed Connectors Section */}
                   {ccPairs && ccPairs.length > 0 && (
                     <div className="space-y-3 mb-6">
                       <h4 className="text-md font-medium text-muted-foreground">
-                        Indexed Connectors
+                        {t("indexedConnectors")}
                       </h4>
                       {(() => {
                         // Group connectors by source
@@ -739,7 +740,7 @@ export function UserSettingsModal({
                   {!hasConnectors && (
                     <div className="text-center py-8">
                       <p className="text-sm text-muted-foreground">
-                        No connectors available.
+                        {t("noConnectorsDesc")}
                       </p>
                     </div>
                   )}
