@@ -5,6 +5,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useTranslations } from "next-intl";
 
 interface AgenticToggleProps {
   proSearchEnabled: boolean;
@@ -40,6 +41,7 @@ export function AgenticToggle({
   proSearchEnabled,
   setProSearchEnabled,
 }: AgenticToggleProps) {
+  const t = useTranslations("AgenticToggle");
   const handleToggle = () => {
     setProSearchEnabled(!proSearchEnabled);
   };
@@ -79,7 +81,7 @@ export function AgenticToggle({
                 proSearchEnabled ? "text-agent" : "text-text-dark"
               }`}
             >
-              Agent
+              {t("agenticToggle")}
             </span>
           </button>
         </TooltipTrigger>
@@ -90,18 +92,16 @@ export function AgenticToggle({
         >
           <div className="flex items-center space-x-2 mb-3">
             <h3 className="text-sm font-semibold text-neutral-900">
-              Agent Search
+              {t("title")}
             </h3>
           </div>
           <p className="text-xs text-neutral-600  dark:text-neutral-700 mb-2">
-            Use AI agents to break down questions and run deep iterative
-            research through promising pathways. Gives more thorough and
-            accurate responses but takes slightly longer.
+            {t("description")}
           </p>
           <ul className="text-xs text-text-600 dark:text-neutral-700 list-disc list-inside">
-            <li>Improved accuracy of search results</li>
-            <li>Less hallucinations</li>
-            <li>More comprehensive answers</li>
+            <li>{t("improvedAccuracy")}</li>
+            <li>{t("lessHallucinations")}</li>
+            <li>{t("moreComprehensiveAnswers")}</li>
           </ul>
         </TooltipContent>
       </Tooltip>

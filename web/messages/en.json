@@ -183,5 +183,13 @@
         "connectedServicesDesc": "Manage your connected services to search across all your content.",
         "indexedConnectors": "Indexed Connectors",
         "noConnectorsDesc": "You have not yet connected any services. Connect a service to get started."
+    },
+    "AgenticToggle": {
+        "agenticToggle": "Agent",
+        "title": "Agentic Search",
+        "description": "Use AI agents to break down questions and run deep iterative research through promising pathways. Gives more thorough and accurate results.",
+        "improvedAccuracy": "Improved accuracy of search results",
+        "lessHallucinations": "Less hallucinations",
+        "moreComprehensiveAnswers": "More comprehensive answers"
     }
 }
