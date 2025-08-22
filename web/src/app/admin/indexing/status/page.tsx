@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 
 function Main() {
+  const t = useTranslations("Status");
   const {
     data: indexAttemptData,
     isLoading: indexAttemptIsLoading,
