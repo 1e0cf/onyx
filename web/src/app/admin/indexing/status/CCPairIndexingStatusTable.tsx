@@ -42,6 +42,7 @@ import { TOGGLED_CONNECTORS_COOKIE_NAME } from "@/lib/constants";
 import { usePaidEnterpriseFeaturesEnabled } from "@/components/settings/usePaidEnterpriseFeaturesEnabled";
 import { ConnectorCredentialPairStatus } from "../../connector/[ccPairId]/types";
 import { FilterComponent, FilterOptions } from "./FilterComponent";
+import { useTranslations } from "next-intl";
 
 function SummaryRow({
   source,
@@ -54,6 +55,7 @@ function SummaryRow({
   isOpen: boolean;
   onToggle: () => void;
 }) {
+  const t = useTranslations("Status");
   const activePercentage = (summary.active / summary.count) * 100;
   const isPaidEnterpriseFeaturesEnabled = usePaidEnterpriseFeaturesEnabled();
 
@@ -78,14 +80,14 @@ function SummaryRow({
 
       <TableCell>
         <div className="text-sm text-neutral-500 dark:text-neutral-300">
-          Total Connectors
+          {t("totalConnectors")}
         </div>
         <div className="text-xl font-semibold">{summary.count}</div>
       </TableCell>
 
       <TableCell>
         <div className="text-sm text-neutral-500 dark:text-neutral-300">
-          Active Connectors
+          {t("activeConnectors")}
         </div>
         <p className="flex text-xl mx-auto font-semibold items-center text-lg mt-1">
           {summary.active}/{summary.count}
@@ -95,7 +97,7 @@ function SummaryRow({
       {isPaidEnterpriseFeaturesEnabled && (
         <TableCell>
           <div className="text-sm text-neutral-500 dark:text-neutral-300">
-            Public Connectors
+            {t("publicConnectors")}
           </div>
           <p className="flex text-xl mx-auto font-semibold items-center text-lg mt-1">
             {summary.public}/{summary.count}
@@ -105,7 +107,7 @@ function SummaryRow({
 
       <TableCell>
         <div className="text-sm text-neutral-500 dark:text-neutral-300">
-          Total Docs Indexed
+          {t("totalDocsIndexed")}
         </div>
         <div className="text-xl font-semibold">
           {summary.totalDocsIndexed.toLocaleString()}
@@ -126,6 +128,7 @@ function ConnectorRow({
   invisible?: boolean;
   isEditable: boolean;
 }) {
+  const t = useTranslations("Status");
   const router = useRouter();
   const isPaidEnterpriseFeaturesEnabled = usePaidEnterpriseFeaturesEnabled();
 
@@ -174,19 +177,19 @@ border border-border dark:border-neutral-700
         <TableCell>
           {ccPairsIndexingStatus.access_type === "public" ? (
             <Badge variant={isEditable ? "success" : "default"} icon={FiUnlock}>
-              Organization Public
+              {t("organizationPublic")}
             </Badge>
           ) : ccPairsIndexingStatus.access_type === "sync" ? (
             <Badge
               variant={isEditable ? "auto-sync" : "default"}
               icon={FiRefreshCw}
             >
-              Inherited from{" "}
+              {t("inheritedFrom")}{" "}
               {getSourceDisplayName(ccPairsIndexingStatus.connector.source)}
             </Badge>
           ) : (
             <Badge variant={isEditable ? "private" : "default"} icon={FiLock}>
-              Private
+              {t("private")}
             </Badge>
           )}
         </TableCell>
@@ -203,7 +206,7 @@ border border-border dark:border-neutral-700
                 />
               </TooltipTrigger>
               <TooltipContent>
-                <p>Manage Connector</p>
+                <p>{t("manageConnector")}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -220,6 +223,7 @@ function FederatedConnectorRow({
   federatedConnector: FederatedConnectorDetail;
   invisible?: boolean;
 }) {
+  const t = useTranslations("Status");
   const router = useRouter();
   const isPaidEnterpriseFeaturesEnabled = usePaidEnterpriseFeaturesEnabled();
 
@@ -248,13 +252,13 @@ border border-border dark:border-neutral-700
       </TableCell>
       <TableCell>N/A</TableCell>
       <TableCell>
-        <Badge variant="success">Indexed</Badge>
+        <Badge variant="success">{t("indexed")}</Badge>
       </TableCell>
       {isPaidEnterpriseFeaturesEnabled && (
         <TableCell>
-          <Badge variant="secondary" icon={FiRefreshCw}>
-            Federated Access
-          </Badge>
+                  <Badge variant="secondary" icon={FiRefreshCw}>
+          {t("federatedAccess")}
+        </Badge>
         </TableCell>
       )}
       <TableCell>N/A</TableCell>
@@ -267,9 +271,9 @@ border border-border dark:border-neutral-700
                 onClick={handleManageClick}
               />
             </TooltipTrigger>
-            <TooltipContent>
-              <p>Manage Federated Connector</p>
-            </TooltipContent>
+                          <TooltipContent>
+                <p>{t("manageFederatedConnector")}</p>
+              </TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </TableCell>
@@ -286,6 +290,7 @@ export function CCPairIndexingStatusTable({
   editableCcPairsIndexingStatuses: ConnectorIndexingStatus<any, any>[];
   federatedConnectors: FederatedConnectorDetail[];
 }) {
+  const t = useTranslations("Status");
   const [searchTerm, setSearchTerm] = useState("");
 
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -557,41 +562,41 @@ export function CCPairIndexingStatusTable({
             invisible
             ccPairsIndexingStatus={{
               cc_pair_id: 1,
-              name: "Sample File Connector",
+              name: t("sampleFileConnector"),
               cc_pair_status: ConnectorCredentialPairStatus.ACTIVE,
-              last_status: "success",
+              last_status: "success" as ValidStatuses,
               connector: {
-                name: "Sample File Connector",
+                name: t("sampleFileConnector"),
                 source: ValidSources.File,
                 input_type: "poll",
                 connector_specific_config: {
-                  file_locations: ["/path/to/sample/file.txt"],
+                  file_locations: [t("sampleFilePath")],
                   zip_metadata: {},
                 },
                 refresh_freq: 86400,
                 prune_freq: null,
-                indexing_start: new Date("2023-07-01T12:00:00Z"),
+                indexing_start: new Date(t("sampleDate")),
                 id: 1,
                 credential_ids: [],
                 access_type: "public",
-                time_created: "2023-07-01T12:00:00Z",
-                time_updated: "2023-07-01T12:00:00Z",
+                time_created: t("sampleDate"),
+                time_updated: t("sampleDate"),
               },
               credential: {
                 id: 1,
-                name: "Sample Credential",
+                name: t("sampleCredential"),
                 source: ValidSources.File,
-                user_id: "1",
-                user_email: "sample@example.com",
-                time_created: "2023-07-01T12:00:00Z",
-                time_updated: "2023-07-01T12:00:00Z",
+                user_id: t("sampleUserId"),
+                user_email: t("sampleEmail"),
+                time_created: t("sampleDate"),
+                time_updated: t("sampleDate"),
                 credential_json: {},
                 admin_public: false,
               },
               access_type: "public",
               docs_indexed: 1000,
-              last_success: "2023-07-01T12:00:00Z",
-              last_finished_status: "success",
+              last_success: t("sampleDate"),
+              last_finished_status: "success" as ValidStatuses,
               latest_index_attempt: null,
               groups: [], // Add this line
               in_repeated_error_state: false,
@@ -603,14 +608,14 @@ export function CCPairIndexingStatusTable({
           <input
             type="text"
             ref={searchInputRef}
-            placeholder="Search connectors..."
+            placeholder={t("searchConnectors")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="ml-1 w-96 h-9 border border-border flex-none rounded-md bg-background-50 px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
           />
 
           <Button className="h-9" onClick={() => toggleSources()}>
-            {!shouldExpand ? "Collapse All" : "Expand All"}
+            {!shouldExpand ? t("collapseAll") : t("expandAll")}
           </Button>
 
           <div className="flex items-center gap-2">
@@ -624,14 +629,14 @@ export function CCPairIndexingStatusTable({
                 {filterOptions.accessType &&
                   filterOptions.accessType.length > 0 && (
                     <Badge variant="secondary" className="px-2 py-0.5 text-xs">
-                      Access: {filterOptions.accessType.join(", ")}
+                      {t("access")}: {filterOptions.accessType.join(", ")}
                     </Badge>
                   )}
 
                 {filterOptions.lastStatus &&
                   filterOptions.lastStatus.length > 0 && (
                     <Badge variant="secondary" className="px-2 py-0.5 text-xs">
-                      Status:{" "}
+                      {t("status")}:{" "}
                       {filterOptions.lastStatus
                         .map((s) => s.replace(/_/g, " "))
                         .join(", ")}
@@ -641,7 +646,7 @@ export function CCPairIndexingStatusTable({
                 {filterOptions.docsCountFilter.operator &&
                   filterOptions.docsCountFilter.value !== null && (
                     <Badge variant="secondary" className="px-2 py-0.5 text-xs">
-                      Docs {filterOptions.docsCountFilter.operator}{" "}
+                      {t("docs")} {filterOptions.docsCountFilter.operator}{" "}
                       {filterOptions.docsCountFilter.value}
                     </Badge>
                   )}
@@ -649,7 +654,7 @@ export function CCPairIndexingStatusTable({
                 {filterOptions.docsCountFilter.operator &&
                   filterOptions.docsCountFilter.value === null && (
                     <Badge variant="secondary" className="px-2 py-0.5 text-xs">
-                      Docs {filterOptions.docsCountFilter.operator} any
+                      {t("docs")} {filterOptions.docsCountFilter.operator} {t("any")}
                     </Badge>
                   )}
 
@@ -670,7 +675,7 @@ export function CCPairIndexingStatusTable({
                     }
                   }}
                 >
-                  <span className="text-red-500 dark:text-red-400">Clear</span>
+                  <span className="text-red-500 dark:text-red-400">{t("clear")}</span>
                 </Badge>
               </div>
             )}
@@ -730,13 +735,13 @@ export function CCPairIndexingStatusTable({
                     {connectorsToggled[source] && (
                       <>
                         <TableRow className="border border-border dark:border-neutral-700">
-                          <TableHead>Name</TableHead>
-                          <TableHead>Last Indexed</TableHead>
-                          <TableHead>Status</TableHead>
+                          <TableHead>{t("name")}</TableHead>
+                          <TableHead>{t("lastIndexed")}</TableHead>
+                          <TableHead>{t("status")}</TableHead>
                           {isPaidEnterpriseFeaturesEnabled && (
-                            <TableHead>Permissions / Access</TableHead>
+                            <TableHead>{t("permissionsAccess")}</TableHead>
                           )}
-                          <TableHead>Total Docs</TableHead>
+                          <TableHead>{t("totalDocs")}</TableHead>
                           <TableHead></TableHead>
                         </TableRow>
                         {(sourceMatches ? statuses : matchingConnectors).map(

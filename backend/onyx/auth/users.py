@@ -358,29 +358,29 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
         # Validate password according to configurable security policy (defined via environment variables)
         if len(password) < PASSWORD_MIN_LENGTH:
             raise exceptions.InvalidPasswordException(
-                reason=f"Password must be at least {PASSWORD_MIN_LENGTH} characters long."
+                reason=f"Пароль должен быть не менее {PASSWORD_MIN_LENGTH} символов в длину."
             )
         if len(password) > PASSWORD_MAX_LENGTH:
             raise exceptions.InvalidPasswordException(
-                reason=f"Password must not exceed {PASSWORD_MAX_LENGTH} characters."
+                reason=f"Длина пароля не должна превышать {PASSWORD_MAX_LENGTH} символов."
             )
         if PASSWORD_REQUIRE_UPPERCASE and not any(char.isupper() for char in password):
             raise exceptions.InvalidPasswordException(
-                reason="Password must contain at least one uppercase letter."
+                reason="Пароль должен содержать хотя бы одну заглавную букву."
             )
         if PASSWORD_REQUIRE_LOWERCASE and not any(char.islower() for char in password):
             raise exceptions.InvalidPasswordException(
-                reason="Password must contain at least one lowercase letter."
+                reason="Пароль должен содержать хотя бы одну строчную букву."
             )
         if PASSWORD_REQUIRE_DIGIT and not any(char.isdigit() for char in password):
             raise exceptions.InvalidPasswordException(
-                reason="Password must contain at least one number."
+                reason="Пароль должен содержать хотя бы одну цифру."
             )
         if PASSWORD_REQUIRE_SPECIAL_CHAR and not any(
             char in PASSWORD_SPECIAL_CHARS for char in password
         ):
             raise exceptions.InvalidPasswordException(
-                reason="Password must contain at least one special character from the following set: "
+                reason="Пароль должен содержать хотя бы один специальный символ из следующего набора: "
                 f"{PASSWORD_SPECIAL_CHARS}."
             )
         return

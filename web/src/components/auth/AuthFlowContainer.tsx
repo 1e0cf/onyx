@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "../logo/Logo";
+import { useTranslations } from "next-intl";
 
 export default function AuthFlowContainer({
   children,
@@ -8,6 +9,7 @@ export default function AuthFlowContainer({
   children: React.ReactNode;
   authState?: "signup" | "login" | "join";
 }) {
+  const t = useTranslations("AuthFlowContainer");
   return (
     <div className="p-4 flex flex-col items-center justify-center min-h-screen bg-background">
       <div className="w-full max-w-md bg-black pt-8 pb-6 px-8 mx-4 gap-y-4 bg-white flex items-center dark:border-none flex-col rounded-xl shadow-lg border border-bacgkround-100 gap-y-2 ">
@@ -16,23 +18,23 @@ export default function AuthFlowContainer({
       </div>
       {authState === "login" && (
         <div className="text-sm mt-4 text-center w-full text-text-900 font-medium mx-auto">
-          Don&apos;t have an account?{" "}
+          {t("dontHaveAccount")}
           <Link
             href="/auth/signup"
             className=" underline transition-colors duration-200"
           >
-            Create one
+            {t("createOne")}
           </Link>
         </div>
       )}
       {authState === "signup" && (
         <div className="text-sm mt-4 text-center w-full text-text-800 font-medium mx-auto">
-          Already have an account?{" "}
+          {t("alreadyHaveAccount")}
           <Link
             href="/auth/login"
             className=" underline transition-colors duration-200"
           >
-            Log In
+            {t("logIn")}
           </Link>
         </div>
       )}

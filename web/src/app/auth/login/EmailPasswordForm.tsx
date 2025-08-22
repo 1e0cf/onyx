@@ -12,6 +12,7 @@ import { Spinner } from "@/components/Spinner";
 import Link from "next/link";
 import { useUser } from "@/components/user/UserProvider";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export function EmailPasswordForm({
   isSignup = false,
@@ -32,6 +33,7 @@ export function EmailPasswordForm({
   const { popup, setPopup } = usePopup();
   const router = useRouter();
   const [isWorking, setIsWorking] = useState(false);
+  const t = useTranslations("EmailPasswordForm");
   return (
     <>
       {isWorking && <Spinner />}
@@ -65,26 +67,25 @@ export function EmailPasswordForm({
               setIsWorking(false);
 
               const errorDetail = (await response.json()).detail;
-              let errorMsg = "Unknown error";
+              let errorMsg = t("errors.unknownError");
               if (typeof errorDetail === "object" && errorDetail.reason) {
                 errorMsg = errorDetail.reason;
               } else if (errorDetail === "REGISTER_USER_ALREADY_EXISTS") {
-                errorMsg =
-                  "An account already exists with the specified email.";
+                errorMsg = t("errors.accountAlreadyExists");
               }
               if (response.status === 429) {
-                errorMsg = "Too many requests. Please try again later.";
+                errorMsg = t("errors.tooManyRequests");
               }
               setPopup({
                 type: "error",
-                message: `Failed to sign up - ${errorMsg}`,
+                message: t("errors.failedToSignUp", { errorMsg }),
               });
               setIsWorking(false);
               return;
             } else {
               setPopup({
                 type: "success",
-                message: "Account created successfully. Please log in.",
+                message: t("errors.accountCreatedSuccessfully"),
               });
             }
           }
@@ -109,20 +110,20 @@ export function EmailPasswordForm({
           } else {
             setIsWorking(false);
             const errorDetail = (await loginResponse.json()).detail;
-            let errorMsg = "Unknown error";
+            let errorMsg = t("errors.unknownError");
             if (errorDetail === "LOGIN_BAD_CREDENTIALS") {
-              errorMsg = "Invalid email or password";
+              errorMsg = t("errors.invalidCredentials");
             } else if (errorDetail === "NO_WEB_LOGIN_AND_HAS_NO_PASSWORD") {
-              errorMsg = "Create an account to set a password";
+              errorMsg = t("errors.createAccountToSetPassword");
             } else if (typeof errorDetail === "string") {
               errorMsg = errorDetail;
             }
             if (loginResponse.status === 429) {
-              errorMsg = "Too many requests. Please try again later.";
+              errorMsg = t("errors.tooManyRequests");
             }
             setPopup({
               type: "error",
-              message: `Failed to login - ${errorMsg}`,
+              message: t("errors.failedToLogin", { errorMsg }),
             });
           }
         }}
@@ -149,7 +150,7 @@ export function EmailPasswordForm({
               disabled={isSubmitting}
               className="mx-auto  !py-4 w-full"
             >
-              {isJoin ? "Join" : isSignup ? "Sign Up" : "Log In"}
+              {isJoin ? t("join") : isSignup ? t("signUp") : t("logIn")}
             </Button>
             {user?.is_anonymous_user && (
               <Link
@@ -157,7 +158,7 @@ export function EmailPasswordForm({
                 className="text-xs text-blue-500  cursor-pointer text-center w-full text-link font-medium mx-auto"
               >
                 <span className="hover:border-b hover:border-dotted hover:border-blue-500">
-                  or continue as guest
+                  {t("continueAsGuest")}
                 </span>
               </Link>
             )}

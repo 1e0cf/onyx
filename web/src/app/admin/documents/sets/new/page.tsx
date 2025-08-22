@@ -11,6 +11,7 @@ import { ErrorCallout } from "@/components/ErrorCallout";
 import { useRouter } from "next/navigation";
 import { refreshDocumentSets } from "../hooks";
 import CardSection from "@/components/admin/CardSection";
+import { useTranslations } from "next-intl";
 
 function Main() {
   const { popup, setPopup } = usePopup();
@@ -62,13 +63,15 @@ function Main() {
 }
 
 const Page = () => {
+  const t = useTranslations("NewDocumentSetPage");
+  
   return (
     <div className="container mx-auto">
       <BackButton />
 
       <AdminPageTitle
         icon={<BookmarkIcon size={32} />}
-        title="New Document Set"
+        title={t("title")}
       />
 
       <Main />

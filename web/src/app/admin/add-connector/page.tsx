@@ -24,6 +24,7 @@ import { errorHandlingFetcher } from "@/lib/fetcher";
 import { buildSimilarCredentialInfoURL } from "@/app/admin/connector/[ccPairId]/lib";
 import { Credential } from "@/lib/connectors/credentials";
 import SourceTile from "@/components/SourceTile";
+import { useTranslations } from "next-intl";
 
 function SourceTileTooltipWrapper({
   sourceMetadata,
@@ -36,6 +37,8 @@ function SourceTileTooltipWrapper({
   federatedConnectors?: FederatedConnectorDetail[];
   slackCredentials?: Credential<any>[];
 }) {
+  const t = useTranslations("AddConnectorPage");
+  
   // Check if there's already a federated connector for this source
   const existingFederatedConnector = useMemo(() => {
     if (!sourceMetadata.federated || !federatedConnectors) {
@@ -108,13 +111,11 @@ function SourceTileTooltipWrapper({
         <TooltipContent side="top" className="max-w-sm">
           {existingFederatedConnector && !hasExistingSlackCredentials ? (
             <p className="text-xs">
-              <strong>Federated connector already configured.</strong> Click to
-              edit the existing connector.
+              <strong>{t("federatedConnectorAlreadyConfigured")}</strong>
             </p>
           ) : hasExistingSlackCredentials ? (
             <p className="text-xs">
-              <strong>Existing Slack credentials found.</strong> Click to manage
-              the traditional Slack connector.
+              <strong>{t("existingSlackCredentialsFound")}</strong>
             </p>
           ) : sourceMetadata.federated ? (
             <p className="text-xs">
@@ -122,8 +123,7 @@ function SourceTileTooltipWrapper({
                 sourceMetadata.federatedTooltip
               ) : (
                 <>
-                  <strong>Federated Search.</strong> This will result in greater
-                  latency and lower search quality.
+                  <strong>{t("federatedSearch")}</strong>
                 </>
               )}
             </p>
@@ -135,6 +135,7 @@ function SourceTileTooltipWrapper({
 }
 
 export default function Page() {
+  const t = useTranslations("AddConnectorPage");
   const sources = useMemo(() => listSourceMetadata(), []);
   const [searchTerm, setSearchTerm] = useState("");
   const { data: federatedConnectors } = useFederatedConnectors();
@@ -216,10 +217,10 @@ export default function Page() {
     <div className="mx-auto container">
       <AdminPageTitle
         icon={<ConnectorIcon size={32} />}
-        title="Add Connector"
+        title={t("title")}
         farRightElement={
           <Link href="/admin/indexing/status">
-            <Button variant="success-reverse">See Connectors</Button>
+            <Button variant="success-reverse">{t("seeConnectors")}</Button>
           </Link>
         }
       />
@@ -227,7 +228,7 @@ export default function Page() {
       <input
         type="text"
         ref={searchInputRef}
-        placeholder="Search connectors..."
+        placeholder={t("searchPlaceholder")}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyPress}
@@ -241,7 +242,7 @@ export default function Page() {
             <div className="flex mt-8">
               <Title>{category}</Title>
             </div>
-            <p>{getCategoryDescription(category as SourceCategory)}</p>
+            <p>{getCategoryDescription(category as SourceCategory, t)}</p>
             <div className="flex flex-wrap gap-4 p-4">
               {sources.map((source, sourceInd) => (
                 <SourceTileTooltipWrapper
@@ -261,25 +262,7 @@ export default function Page() {
   );
 }
 
-function getCategoryDescription(category: SourceCategory): string {
-  switch (category) {
-    case SourceCategory.Messaging:
-      return "Integrate with messaging and communication platforms.";
-    case SourceCategory.ProjectManagement:
-      return "Link to project management and task tracking tools.";
-    case SourceCategory.CustomerSupport:
-      return "Connect to customer support and helpdesk systems.";
-    case SourceCategory.CustomerRelationshipManagement:
-      return "Integrate with customer relationship management platforms.";
-    case SourceCategory.CodeRepository:
-      return "Integrate with code repositories and version control systems.";
-    case SourceCategory.Storage:
-      return "Connect to cloud storage and file hosting services.";
-    case SourceCategory.Wiki:
-      return "Link to wiki and knowledge base platforms.";
-    case SourceCategory.Other:
-      return "Connect to other miscellaneous knowledge sources.";
-    default:
-      return "Connect to various knowledge sources.";
-  }
+function getCategoryDescription(category: SourceCategory, t: any): string {
+  const categoryKey = category as keyof typeof t.raw("categoryDescriptions");
+  return t.raw("categoryDescriptions")[categoryKey] || t.raw("categoryDescriptions").Other;
 }

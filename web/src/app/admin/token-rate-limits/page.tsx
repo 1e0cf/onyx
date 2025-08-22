@@ -18,15 +18,14 @@ import { CreateRateLimitModal } from "./CreateRateLimitModal";
 import { usePaidEnterpriseFeaturesEnabled } from "@/components/settings/usePaidEnterpriseFeaturesEnabled";
 import { ShieldIcon } from "@/components/icons/icons";
 import CreateButton from "@/components/ui/createButton";
+import { useTranslations } from "next-intl";
 
 const BASE_URL = "/api/admin/token-rate-limits";
 const GLOBAL_TOKEN_FETCH_URL = `${BASE_URL}/global`;
 const USER_TOKEN_FETCH_URL = `${BASE_URL}/users`;
 const USER_GROUP_FETCH_URL = `${BASE_URL}/user-groups`;
 
-const GLOBAL_DESCRIPTION =
-  "Global rate limits apply to all users, user groups, and API keys. When the global \
-  rate limit is reached, no more tokens can be spent.";
+
 const USER_DESCRIPTION =
   "User rate limits apply to individual users. When a user reaches a limit, they will \
   be temporarily blocked from spending tokens.";
@@ -60,10 +59,11 @@ const handleCreateTokenRateLimit = async (
 };
 
 function Main() {
+  const t = useTranslations("AdminTokenRateLimitsPage");
   const [tabIndex, setTabIndex] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { popup, setPopup } = usePopup();
-
+  const GLOBAL_DESCRIPTION = t("globalRateLimitDescription");
   const isPaidEnterpriseFeaturesEnabled = usePaidEnterpriseFeaturesEnabled();
 
   const updateTable = (target_scope: Scope) => {
@@ -106,41 +106,37 @@ function Main() {
       {popup}
 
       <Text className="mb-2">
-        Token rate limits enable you control how many tokens can be spent in a
-        given time period. With token rate limits, you can:
+        {t("description")}
       </Text>
 
       <ul className="list-disc mt-2 ml-4 mb-2">
         <li>
           <Text>
-            Set a global rate limit to control your team&apos;s overall token
-            spend.
+            {t("setGlobalRateLimit")}
           </Text>
         </li>
         {isPaidEnterpriseFeaturesEnabled && (
           <>
             <li>
               <Text>
-                Set rate limits for users to ensure that no single user can
-                spend too many tokens.
+                {t("setUserRateLimit")}
               </Text>
             </li>
             <li>
               <Text>
-                Set rate limits for user groups to control token spend for your
-                teams.
+                {t("setUserGroupRateLimit")}
               </Text>
             </li>
           </>
         )}
         <li>
-          <Text>Enable and disable rate limits on the fly.</Text>
+          <Text>{t("enableAndDisableRateLimits")}</Text>
         </li>
       </ul>
 
       <CreateButton
         onClick={() => setModalIsOpen(true)}
-        text="Create a Token Rate Limit"
+        text={t("createTokenRateLimit")}
       />
       {isPaidEnterpriseFeaturesEnabled && (
         <Tabs
@@ -165,21 +161,21 @@ function Main() {
           <TabsContent value="0">
             <GenericTokenRateLimitTable
               fetchUrl={GLOBAL_TOKEN_FETCH_URL}
-              title={"Global Token Rate Limits"}
+              title={t("globalTokenRateLimits")}
               description={GLOBAL_DESCRIPTION}
             />
           </TabsContent>
           <TabsContent value="1">
             <GenericTokenRateLimitTable
               fetchUrl={USER_TOKEN_FETCH_URL}
-              title={"User Token Rate Limits"}
+              title={t("userTokenRateLimits")}
               description={USER_DESCRIPTION}
             />
           </TabsContent>
           <TabsContent value="2">
             <GenericTokenRateLimitTable
               fetchUrl={USER_GROUP_FETCH_URL}
-              title={"User Group Token Rate Limits"}
+              title={t("userGroupTokenRateLimits")}
               description={USER_GROUP_DESCRIPTION}
               responseMapper={(data: Record<string, TokenRateLimit[]>) =>
                 Object.entries(data).flatMap(([group_name, elements]) =>
@@ -198,7 +194,7 @@ function Main() {
         <div className="mt-6">
           <GenericTokenRateLimitTable
             fetchUrl={GLOBAL_TOKEN_FETCH_URL}
-            title={"Global Token Rate Limits"}
+            title={t("globalTokenRateLimits")}
             description={GLOBAL_DESCRIPTION}
           />
         </div>
@@ -218,10 +214,11 @@ function Main() {
 }
 
 export default function Page() {
+  const t = useTranslations("AdminTokenRateLimitsPage");
   return (
     <div className="mx-auto container">
       <AdminPageTitle
-        title="Token Rate Limits"
+        title={t("title")}
         icon={<ShieldIcon size={32} />}
       />
       <Main />

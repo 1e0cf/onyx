@@ -9,6 +9,7 @@ import { FaCircleQuestion } from "react-icons/fa6";
 import { Input } from "@/components/ui/input";
 import { CheckmarkIcon } from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 // Utility: Convert capitalized snake case to human readable case
 function snakeToHumanReadable(str: string): string {
@@ -184,6 +185,7 @@ interface KGEntityTypesProps {
 export default function KGEntityTypes({
   sourceAndEntityTypes,
 }: KGEntityTypesProps) {
+  const t = useTranslations("KGEntityTypes");
   // State to control open/close of all CollapsibleCards
   const [openCards, setOpenCards] = useState<{ [key: string]: boolean }>({});
   // State for search query
@@ -232,17 +234,17 @@ export default function KGEntityTypes({
           variant="default"
           onClick={allClosed ? handleExpandAll : handleCollapseAll}
         >
-          {allClosed ? "Expand All" : "Collapse All"}
+          {allClosed ? t("expandAll") : t("collapseAll")}
         </Button>
       </div>
       <div className="flex flex-col gap-y-4 w-full">
         {Object.entries(sourceAndEntityTypes.entity_types).length === 0 ? (
           <div className="flex flex-col gap-y-4">
-            <p>No results available.</p>
+            <p>{t("noResults")}</p>
             <p>
-              To configure Knowledge Graph, first connect some{" "}
+              {t("noResultsDesc")}
               <Link href="/admin/add-connector" className="underline">
-                Connectors.
+                {t("connectors")}
               </Link>
             </p>
           </div>
@@ -279,7 +281,7 @@ export default function KGEntityTypes({
                         <span className="ml-auto flex flex-row gap-x-16 items-center pr-16">
                           <span className="flex flex-col items-end">
                             <span className="text-sm text-neutral-400 mb-0.5">
-                              Entities Count
+                              {t("entitiesCount")}
                             </span>
                             <span className="text-xl text-neutral-100 font-semibold flex w-full">
                               {stats.entities_count}
@@ -287,7 +289,7 @@ export default function KGEntityTypes({
                           </span>
                           <span className="flex flex-col items-end">
                             <span className="text-sm text-neutral-400 mb-0.5">
-                              Last Updated
+                              {t("lastUpdated")}
                             </span>
                             <span className="text-xl text-neutral-100 font-semibold flex w-full">
                               {stats.last_updated

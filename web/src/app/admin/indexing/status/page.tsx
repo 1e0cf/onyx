@@ -56,7 +56,7 @@ function Main() {
       <div className="text-error">
         {indexAttemptError?.info?.detail ||
           editableIndexAttemptError?.info?.detail ||
-          "Error loading indexing history."}
+          t("errorLoadingIndexingHistory")}
       </div>
     );
   }
@@ -67,11 +67,11 @@ function Main() {
   ) {
     return (
       <Text>
-        It looks like you don&apos;t have any connectors setup yet. Visit the{" "}
+        {t("noConnectorsSetup")}{" "}
         <Link className="text-link" href="/admin/add-connector">
-          Add Connector
+          {t("addConnectorPage")}
         </Link>{" "}
-        page to get started!
+        {t("pageToGetStarted")}
       </Text>
     );
   }
@@ -100,11 +100,11 @@ export default function Status() {
   const t = useTranslations("Status");
   const { popup } = usePopupFromQuery({
     "connector-created": {
-      message: "Connector created successfully",
+      message: t("connectorCreatedSuccessfully"),
       type: "success",
     },
     "connector-deleted": {
-      message: "Connector deleted successfully",
+      message: t("connectorDeletedSuccessfully"),
       type: "success",
     },
   });

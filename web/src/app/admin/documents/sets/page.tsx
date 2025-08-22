@@ -41,6 +41,7 @@ import {
 import CreateButton from "@/components/ui/createButton";
 import { SourceIcon } from "@/components/SourceIcon";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const numToDisplay = 50;
 
@@ -54,6 +55,7 @@ const FederatedConnectorTitle = ({
   showMetadata?: boolean;
   isLink?: boolean;
 }) => {
+  const t = useTranslations("DocumentSetsPage");
   const sourceType = federatedConnector.source.replace(/^federated_/, "");
 
   const mainSectionClassName = "text-blue-500 dark:text-blue-100 flex w-fit";
@@ -64,7 +66,7 @@ const FederatedConnectorTitle = ({
         {federatedConnector.name}
       </div>
       <Badge variant="outline" className="text-xs ml-2">
-        Federated
+        {t("federated")}
       </Badge>
     </>
   );
@@ -109,6 +111,7 @@ const EditRow = ({
   isEditable: boolean;
 }) => {
   const router = useRouter();
+  const t = useTranslations("DocumentSetsPage");
 
   if (!isEditable) {
     return (
@@ -143,8 +146,7 @@ const EditRow = ({
             <TooltipContent width="max-w-sm">
               <div className="flex break-words break-keep whitespace-pre-wrap items-start">
                 <InfoIcon className="mr-2 mt-0.5" />
-                Cannot update while syncing! Wait for the sync to finish, then
-                try again.
+                {t("cannotUpdateWhileSyncing")}
               </div>
             </TooltipContent>
           )}
@@ -170,6 +172,7 @@ const DocumentSetTable = ({
   setPopup,
 }: DocumentFeedbackTableProps) => {
   const [page, setPage] = useState(1);
+  const t = useTranslations("DocumentSetsPage");
 
   // sort by name for consistent ordering
   documentSets.sort((a, b) => {
@@ -191,15 +194,15 @@ const DocumentSetTable = ({
 
   return (
     <div>
-      <Title>Existing Document Sets</Title>
+      <Title>{t("existingDocumentSets")}</Title>
       <Table className="overflow-visible mt-2">
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Connectors</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Public</TableHead>
-            <TableHead>Delete</TableHead>
+            <TableHead>{t("name")}</TableHead>
+            <TableHead>{t("connectors")}</TableHead>
+            <TableHead>{t("status")}</TableHead>
+            <TableHead>{t("public")}</TableHead>
+            <TableHead>{t("delete")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -284,18 +287,18 @@ const DocumentSetTable = ({
                   <TableCell>
                     {documentSet.is_up_to_date ? (
                       <Badge variant="success" icon={FiCheckCircle}>
-                        Up to Date
+                        {t("upToDate")}
                       </Badge>
                     ) : documentSet.cc_pair_summaries.length > 0 ||
                       (documentSet.federated_connector_summaries &&
                         documentSet.federated_connector_summaries.length >
                           0) ? (
                       <Badge variant="in_progress" icon={FiClock}>
-                        Syncing
+                        {t("syncing")}
                       </Badge>
                     ) : (
                       <Badge variant="destructive" icon={FiAlertTriangle}>
-                        Deleting
+                        {t("deleting")}
                       </Badge>
                     )}
                   </TableCell>
@@ -305,14 +308,14 @@ const DocumentSetTable = ({
                         variant={isEditable ? "success" : "default"}
                         icon={FiUnlock}
                       >
-                        Public
+                        {t("publicBadge")}
                       </Badge>
                     ) : (
                       <Badge
                         variant={isEditable ? "private" : "default"}
                         icon={FiLock}
                       >
-                        Private
+                        {t("privateBadge")}
                       </Badge>
                     )}
                   </TableCell>
@@ -325,13 +328,13 @@ const DocumentSetTable = ({
                           );
                           if (response.ok) {
                             setPopup({
-                              message: `Document set "${documentSet.name}" scheduled for deletion`,
+                              message: t("documentSetScheduledForDeletion", { name: documentSet.name }),
                               type: "success",
                             });
                           } else {
                             const errorMsg = (await response.json()).detail;
                             setPopup({
-                              message: `Failed to schedule document set for deletion - ${errorMsg}`,
+                              message: t("failedToScheduleDeletion", { errorMsg }),
                               type: "error",
                             });
                           }
@@ -364,6 +367,7 @@ const DocumentSetTable = ({
 
 const Main = () => {
   const { popup, setPopup } = usePopup();
+  const t = useTranslations("DocumentSetsPage");
   const {
     data: documentSets,
     isLoading: isDocumentSetsLoading,
@@ -387,20 +391,18 @@ const Main = () => {
   }
 
   if (documentSetsError || !documentSets) {
-    return <div>Error: {documentSetsError}</div>;
+    return <div>{t("error", { errorMsg: documentSetsError })}</div>;
   }
 
   if (editableDocumentSetsError || !editableDocumentSets) {
-    return <div>Error: {editableDocumentSetsError}</div>;
+    return <div>{t("error", { errorMsg: editableDocumentSetsError })}</div>;
   }
 
   return (
     <div className="mb-8">
       {popup}
       <Text className="mb-3">
-        <b>Document Sets</b> allow you to group logically connected documents
-        into a single bundle. These can then be used as a filter when performing
-        searches to control the scope of information Onyx searches over.
+        <b>{t("title")}</b> {t("description")}
       </Text>
 
       <div className="mb-3"></div>
@@ -408,7 +410,7 @@ const Main = () => {
       <div className="flex mb-6">
         <CreateButton
           href="/admin/documents/sets/new"
-          text="New Document Set"
+          text={t("newDocumentSet")}
         />
       </div>
 
@@ -429,9 +431,11 @@ const Main = () => {
 };
 
 const Page = () => {
+  const t = useTranslations("DocumentSetsPage");
+  
   return (
     <div className="container mx-auto">
-      <AdminPageTitle icon={<BookmarkIcon size={32} />} title="Document Sets" />
+      <AdminPageTitle icon={<BookmarkIcon size={32} />} title={t("title")} />
 
       <Main />
     </div>
