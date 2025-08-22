@@ -242,7 +242,7 @@ export default function Page() {
             <div className="flex mt-8">
               <Title>{category}</Title>
             </div>
-            <p>{getCategoryDescription(category as SourceCategory, t)}</p>
+            <p>{getCategoryDescription(category as SourceCategory)}</p>
             <div className="flex flex-wrap gap-4 p-4">
               {sources.map((source, sourceInd) => (
                 <SourceTileTooltipWrapper
@@ -262,7 +262,25 @@ export default function Page() {
   );
 }
 
-function getCategoryDescription(category: SourceCategory, t: any): string {
-  const categoryKey = category as keyof typeof t("categoryDescriptions");
-  return t("categoryDescriptions")[categoryKey] || t("categoryDescriptions").Other;
+function getCategoryDescription(category: SourceCategory): string {
+  switch (category) {
+    case SourceCategory.Messaging:
+      return "Integrate with messaging and communication platforms.";
+    case SourceCategory.ProjectManagement:
+      return "Link to project management and task tracking tools.";
+    case SourceCategory.CustomerSupport:
+      return "Connect to customer support and helpdesk systems.";
+    case SourceCategory.CustomerRelationshipManagement:
+      return "Integrate with customer relationship management platforms.";
+    case SourceCategory.CodeRepository:
+      return "Integrate with code repositories and version control systems.";
+    case SourceCategory.Storage:
+      return "Connect to cloud storage and file hosting services.";
+    case SourceCategory.Wiki:
+      return "Link to wiki and knowledge base platforms.";
+    case SourceCategory.Other:
+      return "Connect to other miscellaneous knowledge sources.";
+    default:
+      return "Connect to various knowledge sources.";
+  }
 }
