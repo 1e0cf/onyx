@@ -263,6 +263,6 @@ export default function Page() {
 }
 
 function getCategoryDescription(category: SourceCategory, t: any): string {
-  const categoryKey = category as keyof typeof t.raw("categoryDescriptions");
-  return t.raw("categoryDescriptions")[categoryKey] || t.raw("categoryDescriptions").Other;
+  const categoryKey = category as keyof typeof t("categoryDescriptions");
+  return t("categoryDescriptions")[categoryKey] || t("categoryDescriptions").Other;
 }

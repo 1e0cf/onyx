@@ -7,7 +7,7 @@ personas:
   - id: 0
     name: "Search"
     description: >
-      Assistant with access to documents and knowledge from Connected Sources.
+      Ассистент с доступом к документам и знаниям из подключенных источников
     # Default Prompt objects attached to the persona, see prompts.yaml
     prompts:
       - "Answer-Question"
@@ -45,13 +45,13 @@ personas:
     is_visible: true
     is_default_persona: true
     starter_messages:
-      - name: "Give me an overview of what's here"
+      - name: "Расскажи что здесь есть"
         message: "Sample some documents and tell me what you find."
-      - name: "Use AI to solve a work related problem"
+      - name: "Используй ИИ для решения рабочей проблемы"
         message: "Ask me what problem I would like to solve, then search the knowledge base to help me find a solution."
-      - name: "Find updates on a topic of interest"
+      - name: "Найди обновления по интересующей теме"
         message: "Once I provide a topic, retrieve related documents and tell me when there was last activity on the topic if available."
-      - name: "Surface contradictions"
+      - name: "Выяви противоречия"
         message: "Have me choose a subject. Once I have provided it, check against the knowledge base and point out any inconsistencies. For all your following responses, focus on identifying contradictions."
 
   - id: 1
